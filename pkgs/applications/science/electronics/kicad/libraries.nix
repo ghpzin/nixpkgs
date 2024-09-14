@@ -12,20 +12,20 @@ let
       pname = "kicad-${name}";
       version = builtins.substring 0 10 (libSrc name).rev;
 
-      src = libSrc name;
+      src = (libSrc name).override {
+        postFetch = lib.optionalString (name == "packages3d") ''
+          find $out -type f -name '*.step' | ${lib.getExe parallel} '${lib.getExe stepreduce} {} {} && ${lib.getExe zip} -9 -j {.}.stpZ {} && rm {}'
+        '';
+      };
 
-      nativeBuildInputs = [ cmake ]
-        ++ lib.optionals (name == "packages3d") [
-          stepreduce
-          parallel
-          zip
-        ];
-
-      postInstall = lib.optional (name == "packages3d") ''
-        find $out -type f -name '*.step' | parallel 'stepreduce {} {} && zip -9 {.}.stpZ {} && rm {}'
+      postPatch = lib.optionalString (name == "packages3d") ''
+        substituteInPlace CMakeLists.txt \
+          --replace-fail '"*.step"' '"*.stpZ"'
       '';
 
-      meta = rec {
+      nativeBuildInputs = [ cmake ];
+
+      meta = {
         license = lib.licenses.cc-by-sa-40;
         platforms = lib.platforms.all;
       };
