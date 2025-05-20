@@ -10,11 +10,11 @@
 
 stdenv.mkDerivation rec {
   pname = "dclib";
-  version = "0.3.7";
+  version = "0.3.23";
 
   src = fetchurl {
-    url = "ftp://ftp.debian.nl/pub/freebsd/ports/distfiles/dclib-${version}.tar.bz2";
-    sha256 = "02jdzm5hqzs1dv2rd596vgpcjaapm55pqqapz5m94l30v4q72rfc";
+    url = "mirror://sourceforge/wxdcgui/dclib/dclib-0.3.23.tar.bz2";
+    hash = "sha256-dXtnyxFYqT/YJu81jsCU9Zup3KDd6UodcyWDPyIuTdA=";
   };
 
   buildInputs = [
