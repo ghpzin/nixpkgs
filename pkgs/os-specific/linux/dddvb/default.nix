@@ -8,22 +8,14 @@
 
 stdenv.mkDerivation rec {
   pname = "dddvb";
-  version = "0.9.38-pre.6";
+  version = "0.9.40";
 
   src = fetchFromGitHub {
     owner = "DigitalDevices";
     repo = "dddvb";
     tag = version;
-    hash = "sha256-bt/vMnqRWDDChZ6R4JbCr77cz3nlSPkx6siC9KLSEqs=";
+    hash = "sha256-6FDvgmZ6KHydy5CfrI/nHhKAJeG1HQ/aRUojFDSEzQY=";
   };
-
-  patches = [
-    (fetchpatch {
-      # pci_*_dma_mask no longer exists in 5.18
-      url = "https://github.com/DigitalDevices/dddvb/commit/871821d6a0be147313bb52570591ce3853b3d370.patch";
-      hash = "sha256-wY05HrsduvsIdp/KpS9NWfL3hR9IvGjuNCDljFn7dd0=";
-    })
-  ];
 
   postPatch = ''
     sed -i '/depmod/d' Makefile
@@ -33,6 +25,14 @@ stdenv.mkDerivation rec {
 
   makeFlags = [
     "KDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
+  ];
+
+  env.NIX_CFLAGS_COMPILE = toString [
+    "-Wno-stringop-truncation" 
+    "-Wno-unused-result"
+    "-Wno-array-bounds"
+    "-Wno-stringop-overflow"
+    "-Wno-format-security"
   ];
 
   INSTALL_MOD_PATH = placeholder "out";
