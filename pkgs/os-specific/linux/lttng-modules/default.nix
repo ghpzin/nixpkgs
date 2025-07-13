@@ -8,20 +8,20 @@
 
 stdenv.mkDerivation rec {
   pname = "lttng-modules-${kernel.version}";
-  version = "2.13.15";
+  version = "2.14.0";
 
   src = fetchFromGitHub {
     owner = "lttng";
     repo = "lttng-modules";
     rev = "v${version}";
-    hash = "sha256-cEiv1EjsEvyreRERrCGKKpJdA1IKvuyVmgA7S3EkEnU=";
+    hash = "sha256-70sCMyQA2Hfmimmv2Ea1f+zXGwms3MQ7xyTcOZfwT/A=";
   };
 
   nativeBuildInputs = kernel.moduleBuildDependencies;
 
   hardeningDisable = [ "pic" ];
 
-  env.NIX_CFLAGS_COMPILE = "-Wno-error=implicit-function-declaration";
+  # env.NIX_CFLAGS_COMPILE = "-Wno-error=implicit-function-declaration";
 
   makeFlags = kernelModuleMakeFlags ++ [
     "KERNELDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
