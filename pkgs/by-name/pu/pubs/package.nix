@@ -28,6 +28,11 @@ python3.pkgs.buildPythonApplication rec {
       url = "https://github.com/pubs/pubs/commit/05e214eb406447196c77c8aa3e4658f70e505f23.patch";
       hash = "sha256-UBkKiYaG6y6z8lsRpdcsaGsoklv6qj07KWdfkQcVl2g=";
     })
+    # https://github.com/pubs/pubs/pull/283
+    (fetchpatch {
+      url = "https://github.com/pubs/pubs/pull/283.patch";
+      hash = "sha256-+LhZZ5WZzvcvEnSn0FX1AwOe8w7ACMD7J1FKC2bVSJ0=";
+    })
   ];
 
   nativeBuildInputs = with python3.pkgs; [
