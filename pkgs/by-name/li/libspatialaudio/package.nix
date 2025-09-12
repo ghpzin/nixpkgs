@@ -24,6 +24,9 @@ stdenv.mkDerivation rec {
     zlib
   ];
 
+  # cmake 4 compat, remove in next update
+  cmakeFlags = ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"];
+
   postFixup = ''
     substituteInPlace "''${!outputDev}/lib/pkgconfig/spatialaudio.pc" \
       --replace '-L${lib.getDev libmysofa}' '-L${lib.getLib libmysofa}'
