@@ -29,6 +29,8 @@ stdenv.mkDerivation rec {
   cmakeFlags = [
     # Build defaults to static libraries.
     "-DBUILD_SHARED_LIBS=${if static then "OFF" else "ON"}"
+    # cmake 4 compat, remove in next update
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
   ];
 
   patches = [
