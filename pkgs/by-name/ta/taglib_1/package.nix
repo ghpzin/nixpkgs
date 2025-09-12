@@ -30,6 +30,9 @@ stdenv.mkDerivation (finalAttrs: {
     #   https://github.com/taglib/taglib/issues/1098
     (lib.cmakeFeature "CMAKE_INSTALL_LIBDIR" "lib")
     (lib.cmakeFeature "CMAKE_INSTALL_INCLUDEDIR" "include")
+
+    # cmake 4 compat
+    (lib.cmakeFeature "CMAKE_POLICY_VERSION_MINIMUM" "3.5")
   ];
 
   passthru.tests.pkg-config = testers.testMetaPkgConfig finalAttrs.finalPackage;
