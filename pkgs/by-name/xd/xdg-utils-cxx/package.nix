@@ -19,6 +19,9 @@ stdenv.mkDerivation rec {
     cmake
   ];
 
+  # cmake 4 compat, remove in next update
+  cmakeFlags = ["-DCMAKE_POLICY_VERSION_MINIMUM=3.6"];
+
   meta = with lib; {
     description = "Implementation of the FreeDesktop specifications to be used in c++ projects";
     homepage = "https://github.com/azubieta/xdg-utils-cxx";
