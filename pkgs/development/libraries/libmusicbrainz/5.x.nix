@@ -43,6 +43,9 @@ stdenv.mkDerivation rec {
     })
   ];
 
+  # cmake 4 compat, remove in next update
+  cmakeFlags = ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"];
+
   dontUseCmakeBuildDir = true;
 
   meta = with lib; {
