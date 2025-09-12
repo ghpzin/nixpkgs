@@ -67,6 +67,8 @@ stdenv.mkDerivation (finalAttrs: {
     # Disable -Werror by using build type specific flags, which are
     # added after general CMAKE_CXX_FLAGS.
     (lib.cmakeFeature "CMAKE_CXX_FLAGS_RELEASE" "-Wno-error")
+    # cmake 4 compat, remove in next update
+    (lib.cmakeFeature "CMAKE_POLICY_VERSION_MINIMUM" "3.5")
   ];
 
   doCheck =
