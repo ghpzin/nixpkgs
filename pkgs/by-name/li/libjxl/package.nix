@@ -116,6 +116,9 @@ stdenv.mkDerivation rec {
     # TODO: Update this package to enable this (overridably via an option):
     # Viewer tools for evaluation.
     # "-DJPEGXL_ENABLE_VIEWERS=ON"
+
+    # cmake 4 compat, remove in next update
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.16"
   ]
   ++ lib.optionals enablePlugins [
     # Enable plugins, such as:
