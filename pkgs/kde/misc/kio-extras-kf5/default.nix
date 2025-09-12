@@ -63,5 +63,10 @@ stdenv.mkDerivation rec {
     libappimage
   ];
 
+  cmakeFlags = [
+    # cmake 4 compat, remove in next update
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+  ];
+
   meta = kio-extras.meta;
 }
