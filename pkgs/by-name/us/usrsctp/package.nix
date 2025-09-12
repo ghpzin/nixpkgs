@@ -32,6 +32,9 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ cmake ];
 
+  # cmake 4 compat, remove in next update
+  cmakeFlags = ["-DCMAKE_POLICY_VERSION_MINIMUM=3.10"];
+
   # https://github.com/sctplab/usrsctp/issues/662
   postPatch = ''
     substituteInPlace usrsctplib/CMakeLists.txt \
