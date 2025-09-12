@@ -20,6 +20,9 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [ cmake ];
   buildInputs = lib.optional stdenv.hostPlatform.isFreeBSD freebsd.libstdthreads;
 
+  # cmake 4 compat, remove in next update
+  cmakeFlags = ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"];
+
   env = lib.optionalAttrs stdenv.hostPlatform.isFreeBSD {
     NIX_LDFLAGS = "-lstdthreads";
   };
