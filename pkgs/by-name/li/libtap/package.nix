@@ -23,6 +23,9 @@ stdenv.mkDerivation rec {
     perl
   ];
 
+  # cmake 4 compat, remove in next update
+  cmakeFlags = ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"];
+
   meta = with lib; {
     description = "Library to implement a test protocol";
     longDescription = ''
