@@ -26,6 +26,9 @@ stdenv.mkDerivation rec {
     libzip
   ];
 
+  # cmake 4 compat, remove in next update
+  cmakeFlags = ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"];
+
   meta = with lib; {
     homepage = "http://ebook-tools.sourceforge.net";
     description = "Tools and library for dealing with various ebook file formats";
