@@ -28,6 +28,9 @@ stdenv.mkDerivation rec {
     "-DYAML_CPP_BUILD_TOOLS=false"
     (lib.cmakeBool "YAML_BUILD_SHARED_LIBS" (!static))
     "-DINSTALL_GTEST=false"
+
+    # cmake 4 compat, remove in next update
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
   ];
 
   doCheck = stdenv.buildPlatform.canExecute stdenv.hostPlatform;
