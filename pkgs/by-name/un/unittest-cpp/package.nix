@@ -25,9 +25,14 @@ stdenv.mkDerivation rec {
     })
   ];
 
-  # Fix 'Version:' setting in .pc file. TODO: remove once upstreamed:
-  #     https://github.com/unittest-cpp/unittest-cpp/pull/188
-  cmakeFlags = [ "-DPACKAGE_VERSION=${version}" ];
+  cmakeFlags = [
+    # Fix 'Version:' setting in .pc file. TODO: remove once upstreamed:
+    #     https://github.com/unittest-cpp/unittest-cpp/pull/188
+    "-DPACKAGE_VERSION=${version}"
+
+    # cmake 4 compat, remove in next update
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+  ];
 
   nativeBuildInputs = [ cmake ];
 
