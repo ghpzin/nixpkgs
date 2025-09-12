@@ -16,7 +16,10 @@ stdenv.mkDerivation {
 
   nativeBuildInputs = [ cmake ];
 
-  cmakeFlags = lib.optional (
+  cmakeFlags = [
+    # cmake 4 compat, remove in next update
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+  ] ++ lib.optional (
     stdenv.hostPlatform != stdenv.buildPlatform
   ) "-DMSGPACK_BUILD_EXAMPLES=OFF";
 
