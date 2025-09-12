@@ -35,7 +35,11 @@ stdenv.mkDerivation rec {
 
   buildInputs = [ libebml ];
 
-  cmakeFlags = [ "-DBUILD_SHARED_LIBS=YES" ];
+  cmakeFlags = [
+    "-DBUILD_SHARED_LIBS=YES"
+    # cmake 4 compat, remove in next update
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+  ];
 
   passthru = {
     tests.pkg-config = testers.hasPkgConfigModules { package = libmatroska; };
