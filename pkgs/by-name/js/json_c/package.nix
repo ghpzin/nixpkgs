@@ -23,6 +23,11 @@ stdenv.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [ cmake ];
 
+  cmakeFlags = [
+    # cmake 4 compat, remove in next update
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.9"
+  ];
+
   meta = with lib; {
     description = "JSON implementation in C";
     longDescription = ''
