@@ -119,6 +119,13 @@ buildPythonApplication rec {
       --replace "subprocess.check_output(['llvm-config', '--version']).strip().decode()" '"${lib.versions.major llvmPackages.libclang.version}"' \
       --replace "subprocess.check_output(['llvm-config', '--prefix']).strip().decode()" '"${lib.getLib llvmPackages.libclang}"' \
       --replace "subprocess.check_output(['llvm-config', '--libdir']).strip().decode()" '"${lib.getLib llvmPackages.libclang}/lib"'
+
+    # cmake 4 compat, remove when fixed upstream
+    substituteInPlace cmark/CMakeLists.txt \
+      --replace-fail "cmake_minimum_required(VERSION 2.8.9)" "cmake_minimum_required(VERSION 3.10)" \
+      --replace-fail "cmake_policy(SET CMP0048 OLD)" ""
+    substituteInPlace cmark/extensions/CMakeLists.txt \
+      --replace-fail "cmake_minimum_required(VERSION 2.8)" "cmake_minimum_required(VERSION 3.10)"
   '';
 
   # Make pytest run from a temp dir to have it pick up installed package for cmark
