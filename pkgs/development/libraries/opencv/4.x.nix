@@ -502,6 +502,9 @@ effectiveStdenv.mkDerivation {
           (enableCuda && effectiveStdenv.cc.isClang)
       )
     ))
+
+    # cmake 4 compat, remove in next update
+    (cmakeFeature "CMAKE_POLICY_VERSION_MINIMUM" "3.5")
   ]
   ++ optionals enableCuda [
     (cmakeBool "CUDA_FAST_MATH" true)
