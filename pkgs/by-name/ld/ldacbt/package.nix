@@ -29,6 +29,8 @@ stdenv.mkDerivation rec {
   cmakeFlags = [
     # CMakeLists.txt by default points to $out
     "-DINSTALL_INCLUDEDIR=${placeholder "dev"}/include"
+    # cmake 4 compat, remove in next update
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
   ];
 
   meta = with lib; {
