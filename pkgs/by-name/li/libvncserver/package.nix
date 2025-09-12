@@ -45,6 +45,8 @@ stdenv.mkDerivation (finalAttrs: {
     (lib.cmakeBool "BUILD_SHARED_LIBS" enableShared)
     (lib.cmakeBool "WITH_EXAMPLES" buildExamples)
     (lib.cmakeBool "WITH_TESTS" finalAttrs.doCheck)
+    # cmake 4 compat, remove in next update
+    (lib.cmakeFeature "CMAKE_POLICY_VERSION_MINIMUM" "3.5")
   ];
 
   # This test checks if using the **installed** headers works.
