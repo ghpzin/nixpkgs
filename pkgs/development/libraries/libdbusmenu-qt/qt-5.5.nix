@@ -19,7 +19,12 @@ stdenv.mkDerivation rec {
   buildInputs = [ qtbase ];
   nativeBuildInputs = [ cmake ];
 
-  cmakeFlags = [ "-DWITH_DOC=OFF" ];
+  cmakeFlags = [
+    "-DWITH_DOC=OFF"
+
+    # cmake 4 compat
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+  ];
 
   dontWrapQtApps = true;
 
