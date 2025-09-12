@@ -26,6 +26,11 @@ stdenv.mkDerivation (finalAttrs: {
     maeparser
   ];
 
+  cmakeFlags = [
+    # cmake 4 compat, remove in next update
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+  ];
+
   env = lib.optionalAttrs stdenv.cc.isClang {
     NIX_CFLAGS_COMPILE = "-Wno-unused-but-set-variable";
   };
