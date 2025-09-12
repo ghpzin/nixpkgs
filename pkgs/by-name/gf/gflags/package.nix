@@ -25,6 +25,9 @@ stdenv.mkDerivation rec {
   cmakeFlags = [
     "-DGFLAGS_BUILD_SHARED_LIBS=${if enableShared then "ON" else "OFF"}"
     "-DGFLAGS_BUILD_STATIC_LIBS=ON"
+
+    # cmake 4 compat, remove in next update
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
   ];
 
   doCheck = false;
