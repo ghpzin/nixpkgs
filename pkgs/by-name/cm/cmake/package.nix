@@ -66,6 +66,7 @@ stdenv.mkDerivation (finalAttrs: {
 
     # Remove references to non‐Nix search paths.
     ./remove-impure-search-paths.patch
+    ./more-blas.patch
   ]
   ++ lib.optionals stdenv.hostPlatform.isDarwin [
     (replaceVars ./darwin-binary-paths.patch {

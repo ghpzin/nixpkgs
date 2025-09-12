@@ -1,0 +1,66 @@
+diff --git a/Modules/FindBLAS.cmake b/Modules/FindBLAS.cmake
+index 0d0a8360ad..884ccc0e32 100644
+--- a/Modules/FindBLAS.cmake
++++ b/Modules/FindBLAS.cmake
+@@ -1093,6 +1093,61 @@
+ 
+ # BLAS in acml library?
+ if(BLA_VENDOR MATCHES "ACML" OR BLA_VENDOR STREQUAL "All")
++  if(((BLA_VENDOR STREQUAL "ACML") AND (NOT BLAS_ACML_LIB_DIRS)) OR
++    ((BLA_VENDOR STREQUAL "ACML_MP") AND (NOT BLAS_ACML_MP_LIB_DIRS)) OR
++    ((BLA_VENDOR STREQUAL "ACML_GPU") AND (NOT BLAS_ACML_GPU_LIB_DIRS))
++    )
++  # try to find acml in "standard" paths
++  set(_ACML_ROOT)
++  set(_ACML_GPU_ROOT)
++  list(GET _ACML_ROOT 0 _ACML_ROOT)
++  list(GET _ACML_GPU_ROOT 0 _ACML_GPU_ROOT)
++  if(_ACML_ROOT)
++    get_filename_component(_ACML_ROOT ${_ACML_ROOT} PATH)
++    if(_blas_sizeof_integer EQUAL 8)
++      set(_ACML_PATH_SUFFIX "_int64")
++    else()
++      set(_ACML_PATH_SUFFIX "")
++    endif()
++    if(CMAKE_Fortran_COMPILER_ID STREQUAL "Intel")
++      set(_ACML_COMPILER32 "ifort32")
++      set(_ACML_COMPILER64 "ifort64")
++    elseif(CMAKE_Fortran_COMPILER_ID STREQUAL "IntelLLVM")
++      # 32-bit not supported
++      set(_ACML_COMPILER64 "ifx")
++    elseif(CMAKE_Fortran_COMPILER_ID STREQUAL "SunPro")
++      set(_ACML_COMPILER32 "sun32")
++      set(_ACML_COMPILER64 "sun64")
++    elseif(CMAKE_Fortran_COMPILER_ID STREQUAL "PGI")
++      set(_ACML_COMPILER32 "pgi32")
++      if(WIN32)
++        set(_ACML_COMPILER64 "win64")
++      else()
++        set(_ACML_COMPILER64 "pgi64")
++      endif()
++    elseif(CMAKE_Fortran_COMPILER_ID STREQUAL "Open64")
++      # 32 bit builds not supported on Open64 but for code simplicity
++      # We'll just use the same directory twice
++      set(_ACML_COMPILER32 "open64_64")
++      set(_ACML_COMPILER64 "open64_64")
++    elseif(CMAKE_Fortran_COMPILER_ID STREQUAL "NAG")
++      set(_ACML_COMPILER32 "nag32")
++      set(_ACML_COMPILER64 "nag64")
++    else()
++      set(_ACML_COMPILER32 "gfortran32")
++      set(_ACML_COMPILER64 "gfortran64")
++    endif()
++
++    if(BLA_VENDOR STREQUAL "ACML_MP")
++      set(_ACML_MP_LIB_DIRS
++        "${_ACML_ROOT}/${_ACML_COMPILER32}_mp${_ACML_PATH_SUFFIX}/lib"
++        "${_ACML_ROOT}/${_ACML_COMPILER64}_mp${_ACML_PATH_SUFFIX}/lib")
++    else()
++      set(_ACML_LIB_DIRS
++        "${_ACML_ROOT}/${_ACML_COMPILER32}${_ACML_PATH_SUFFIX}/lib"
++        "${_ACML_ROOT}/${_ACML_COMPILER64}${_ACML_PATH_SUFFIX}/lib")
++    endif()
++  endif()
+ elseif(BLAS_${BLA_VENDOR}_LIB_DIRS)
+   set(_${BLA_VENDOR}_LIB_DIRS ${BLAS_${BLA_VENDOR}_LIB_DIRS})
+ endif()
