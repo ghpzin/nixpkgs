@@ -49,6 +49,9 @@ stdenv.mkDerivation rec {
     "-DUSE_INTERNAL_TINYXML=OFF"
     "-DBUILD_SHARED_LIBS=ON"
     "-DINSTALL_LIBENCFS=ON"
+
+      # cmake 4 compat, remove when implemented upstream
+      "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
   ];
 
   meta = with lib; {
