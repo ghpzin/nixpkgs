@@ -6,7 +6,7 @@
   fetchFromGitHub,
   cmake,
   pkg-config,
-  box2d,
+  box2d_2,
   unstableGitUpdater,
 }:
 
@@ -14,7 +14,7 @@ let
   inherit (lib) cmakeBool;
 
   # 2.3.1 is the only supported version
-  box2d' = box2d.overrideAttrs (old: rec {
+  box2d' = box2d_2.overrideAttrs (old: rec {
     version = "2.3.1";
     src = fetchFromGitHub {
       owner = "erincatto";
