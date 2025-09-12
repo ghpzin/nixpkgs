@@ -37,7 +37,10 @@ stdenv.mkDerivation (finalAttrs: {
     libGLU
   ];
 
-  cmakeFlags = lib.optionals stdenv.hostPlatform.isDarwin [
+  cmakeFlags = [
+    # cmake 4 compat, remove when implemented upstream
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+  ] ++ lib.optionals stdenv.hostPlatform.isDarwin [
     "-DOPENGL_INCLUDE_DIR=${lib.getInclude libGLX}/include"
     "-DOPENGL_gl_LIBRARY:FILEPATH=${lib.getLib libGLX}/lib/libGL.dylib"
     "-DFREEGLUT_BUILD_DEMOS:BOOL=OFF"
