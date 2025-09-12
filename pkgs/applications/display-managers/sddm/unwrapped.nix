@@ -88,6 +88,9 @@ stdenv.mkDerivation (finalAttrs: {
     "-DSYSTEMD_SYSUSERS_DIR=${placeholder "out"}/lib/sysusers.d"
     "-DSYSTEMD_TMPFILES_DIR=${placeholder "out"}/lib/tmpfiles.d"
     "-DDBUS_CONFIG_DIR=${placeholder "out"}/share/dbus-1/system.d"
+
+    # cmake 4 compat, remove in next update
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
   ];
 
   postInstall = ''
