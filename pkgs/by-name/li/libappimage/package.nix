@@ -51,6 +51,8 @@ stdenv.mkDerivation rec {
     "-DUSE_SYSTEM_SQUASHFUSE=1"
     "-DUSE_SYSTEM_XDGUTILS=1"
     "-DUSE_SYSTEM_XZ=1"
+    # cmake 4 compat, remove in next update
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.6"
   ];
 
   nativeBuildInputs = [
