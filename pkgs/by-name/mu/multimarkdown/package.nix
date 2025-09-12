@@ -28,6 +28,9 @@ stdenv.mkDerivation (finalAttrs: {
     pkg-config
   ];
 
+  # cmake 4 compat, remove in next update
+  cmakeFlags = ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"];
+
   meta = {
     homepage = "https://fletcher.github.io/MultiMarkdown-6/introduction.html";
     description = "Derivative of Markdown that adds new syntax features";
