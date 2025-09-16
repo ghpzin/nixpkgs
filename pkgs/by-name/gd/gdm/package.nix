@@ -106,6 +106,12 @@ stdenv.mkDerivation (finalAttrs: {
       revert = true;
     })
 
+    # fix build with gcc15
+    (fetchpatch {
+      url = "https://src.fedoraproject.org/rpms/gdm/raw/3116da9c3797b3608a97de63c3087bd049baf515/f/0001-gdm-settings-utils-rename-variable-to-fix-build-with.patch";
+      hash = "sha256-gOURo0WzBqSrVl0hnpdtd60QFKc0CT2A9YjNoPUPtyE=";
+    })
+
     # Change hardcoded paths to nix store paths.
     (replaceVars ./fix-paths.patch {
       inherit
