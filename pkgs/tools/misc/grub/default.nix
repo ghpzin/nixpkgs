@@ -1,6 +1,7 @@
 {
   lib,
   stdenv,
+  applyPatches,
   fetchgit,
   flex,
   bison,
@@ -73,11 +74,18 @@ let
 
   inPCSystems = lib.any (system: stdenv.hostPlatform.system == system) (lib.attrNames pcSystems);
 
-  gnulib = fetchgit {
-    url = "https://https.git.savannah.gnu.org/git/gnulib.git";
-    # NOTE: keep in sync with bootstrap.conf!
-    rev = "9f48fb992a3d7e96610c4ce8be969cff2d61a01b";
-    hash = "sha256-mzbF66SNqcSlI+xmjpKpNMwzi13yEWoc1Fl7p4snTto=";
+  gnulib = applyPatches {
+    src = fetchgit {
+      url = "https://https.git.savannah.gnu.org/git/gnulib.git";
+      # NOTE: keep in sync with bootstrap.conf!
+      rev = "9f48fb992a3d7e96610c4ce8be969cff2d61a01b";
+      hash = "sha256-mzbF66SNqcSlI+xmjpKpNMwzi13yEWoc1Fl7p4snTto=";
+    };
+    patches = [
+      # Fix build with gcc15
+      # based on <https://build.opensuse.org/projects/openSUSE:Factory/packages/grub2/files/grub2-string-initializer.patch>
+      ./grub2-string-initializer.patch
+    ];
   };
 
   # The locales are fetched from translationproject.org at build time,
