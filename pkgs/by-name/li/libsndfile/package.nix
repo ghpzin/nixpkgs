@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  fetchpatch,
   autoreconfHook,
   autogen,
   pkg-config,
@@ -34,6 +35,14 @@ stdenv.mkDerivation rec {
     rev = version;
     hash = "sha256-MOOX/O0UaoeMaQPW9PvvE0izVp+6IoE5VbtTx0RvMkI=";
   };
+
+  patches = [
+    # fix build with gcc15
+    (fetchpatch {
+      url = "https://src.fedoraproject.org/rpms/libsndfile/raw/defcc57372dabf840db62a9fe59bb6e9fcc5dd55/f/libsndfile-1.2.2-stdbool.patch";
+      hash = "sha256-kMAVT6MgI/Xe/y/ox4DvtY3hGnTlDkAZHde/D0RsJSU=";
+    })
+  ];
 
   nativeBuildInputs = [
     autoreconfHook
