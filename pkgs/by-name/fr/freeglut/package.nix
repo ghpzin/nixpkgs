@@ -29,6 +29,12 @@ stdenv.mkDerivation (finalAttrs: {
       url = "https://github.com/freeglut/freeglut/commit/2294389397912c9a6505a88221abb7dca0a4fb79.patch";
       hash = "sha256-buNhlVUbDekklnar6KFWN/GUKE+jMEqTGrY3LY0LwVs=";
     })
+
+    # fix build with gcc15
+    (fetchpatch {
+      url = "https://src.fedoraproject.org/rpms/freeglut/raw/c29323d05df3a8b080541741b0fb247b97a3eb68/f/0001-egl-fix-fgPlatformDestroyContext-prototype-for-C23.patch";
+      hash = "sha256-agXw3JHq81tx5514kkorvuU5mX4E3AV930hy1OJl4L0=";
+    })
   ];
 
   outputs = [
