@@ -1,6 +1,7 @@
 {
   lib,
   stdenv,
+  fetchpatch,
   fetchurl,
   libICE,
   libXext,
@@ -21,6 +22,14 @@ stdenv.mkDerivation (finalAttrs: {
     url = "mirror://sourceforge/freeglut/freeglut-${finalAttrs.version}.tar.gz";
     sha256 = "sha256-nD1NZRb7+gKA7ck8d2mPtzA+RDwaqvN9Jp4yiKbD6lI=";
   };
+
+  patches = [
+    # fix build with gcc15
+    (fetchpatch {
+      url = "https://src.fedoraproject.org/rpms/freeglut/raw/c29323d05df3a8b080541741b0fb247b97a3eb68/f/0001-egl-fix-fgPlatformDestroyContext-prototype-for-C23.patch";
+      hash = "sha256-agXw3JHq81tx5514kkorvuU5mX4E3AV930hy1OJl4L0=";
+    })
+  ];
 
   outputs = [
     "out"
