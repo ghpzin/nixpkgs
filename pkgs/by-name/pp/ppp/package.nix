@@ -2,6 +2,7 @@
   autoreconfHook,
   bash,
   fetchFromGitHub,
+  fetchpatch,
   lib,
   libpcap,
   libxcrypt,
@@ -24,6 +25,13 @@ stdenv.mkDerivation rec {
     tag = "v${version}";
     hash = "sha256-NV8U0F8IhHXn0YuVbfFr992ATQZaXA16bb5hBIwm9Gs=";
   };
+
+  patches = [
+    (fetchpatch {
+      url = "https://src.fedoraproject.org/rpms/ppp/raw/055f5683fd0028789391e47c1da866685b2189ee/f/ppp-2.5.1-gcc15.patch";
+      hash = "sha256-9I8WHpEawDEdLdnPAGeJhqEIqe7ZP/ZdzUZQsPRlyJA=";
+    })
+  ];
 
   configureFlags = [
     "--localstatedir=/var"
