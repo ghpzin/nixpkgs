@@ -22,6 +22,8 @@ stdenv.mkDerivation rec {
     sha256 = "10mrl5k3l2hxjhz4w93n50xwywp6y890rw2vsjcgai8627x5f1df";
   };
 
+  env.NIX_CFLAGS_COMPILE = "-std=gnu17";
+
   nativeBuildInputs = [ pkg-config ];
   propagatedBuildInputs = [ glib ];
 
