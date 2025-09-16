@@ -36,6 +36,7 @@ stdenv.mkDerivation rec {
 
   postPatch = ''
     sed -i 's/\[\[[^]]*\]\]/[ "''$''${n##*.}" = "so" ]/' */lib/Makefile.in
+    NIX_CFLAGS_COMPILE+=" -std=gnu17"
   ''
   + lib.optionalString stdenv.hostPlatform.isMusl ''
     NIX_CFLAGS_COMPILE+=" -D_GNU_SOURCE"
