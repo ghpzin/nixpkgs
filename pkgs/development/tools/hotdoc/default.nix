@@ -2,6 +2,7 @@
   lib,
   stdenv,
   buildPythonApplication,
+  fetchpatch,
   fetchPypi,
   replaceVars,
   clang,
@@ -44,6 +45,11 @@ buildPythonApplication rec {
     (replaceVars ./clang.patch {
       clang = lib.getExe clang;
       libclang = "${lib.getLib libclang}/lib/libclang${stdenv.hostPlatform.extensions.sharedLibrary}";
+    })
+    (fetchpatch {
+      name = "hotdoc-fix-build-with-gcc15.patch";
+      url = "https://github.com/hotdoc/hotdoc/commit/adf8518431fafb78c9b47862a0a9a58824b6a421.patch?full_index=1";
+      hash = "sha256-5y50Yk+AjV3aSk8H3k9od/Yvy09FyQQOcVOAcstQnw8=";
     })
   ];
 
