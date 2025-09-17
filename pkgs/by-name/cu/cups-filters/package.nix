@@ -6,6 +6,7 @@
   dbus,
   dejavu_fonts,
   fetchFromGitHub,
+  fetchpatch,
   fontconfig,
   gawk,
   ghostscript,
@@ -61,6 +62,13 @@
         rev = version;
         hash = "sha256-bLOl64bdeZ10JLcQ7GbU+VffJu3Lzo0ves7O7GQIOWY=";
       };
+
+      patches = [
+        (fetchpatch {
+          url = "https://src.fedoraproject.org/rpms/cups-filters/raw/fdab9d0e8ff57fbc3601a538e6598d4747c49d46/f/0001-Fix-build-failure-with-GCC-15-and-std-c23.patch";
+          hash = "sha256-Hu3nCHzX6K4tD7T5XIt0dh6GPQxmgfuHqbBXWfdXxoA=";
+        })
+      ];
 
       strictDeps = true;
 
