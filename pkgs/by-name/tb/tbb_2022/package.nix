@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  fetchpatch,
   cmake,
   ninja,
   ctestCheckHook,
@@ -36,6 +37,12 @@ stdenv.mkDerivation (finalAttrs: {
     #
     # <https://github.com/uxlfoundation/oneTBB/pull/1849>
     ./fix-libtbbmalloc-dlopen.patch
+    # Fix build with gcc15
+    # <https://github.com/uxlfoundation/oneTBB/pull/1831>
+    (fetchpatch {
+      url = "https://github.com/uxlfoundation/oneTBB/commit/712ad98443300aab202f5e93a76472d59b79752a.patch?full_index=1";
+      hash = "sha256-4qoVCy3xQZK6Vp471miE79FSrU0D0Iu6KWMJ08m0EsE=";
+    })
   ];
 
   nativeBuildInputs = [
