@@ -120,6 +120,13 @@ stdenv.mkDerivation (finalAttrs: {
     "-Dmultimedia=disabled"
   ];
 
+  # Fix build with gcc15
+  # from <https://gitlab.archlinux.org/archlinux/packaging/packages/evince/-/blob/d15c1c165edcb39b3a3a15434a1fdb8ca63b91be/PKGBUILD#L73-74>
+  env.NIX_CFLAGS_COMPILE = toString [
+    "-DHAVE_STRING_H"
+    "-DHAVE_STDLIB_H"
+  ];
+
   preFixup = ''
     gappsWrapperArgs+=(--prefix XDG_DATA_DIRS : "${shared-mime-info}/share")
   '';
