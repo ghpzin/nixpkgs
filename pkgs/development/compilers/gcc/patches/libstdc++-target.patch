@@ -3,10 +3,10 @@ I noticed that building the mingw32 cross compiler.
 Looking at the build script for mingw in archlinux, I think that only nixos
 needs this patch. I don't know why.
 diff --git a/Makefile.in b/Makefile.in
-index 93f66b6..d691917 100644
+index b1ed67d3d4f..6ceb475e83c 100644
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -266,6 +266,7 @@ BASE_TARGET_EXPORTS = \
+@@ -303,6 +303,7 @@ BASE_TARGET_EXPORTS = \
  	AR="$(AR_FOR_TARGET)"; export AR; \
  	AS="$(COMPILER_AS_FOR_TARGET)"; export AS; \
  	CC="$(CC_FOR_TARGET) $(XGCC_FLAGS_FOR_TARGET) $$TFLAGS"; export CC; \
@@ -14,7 +14,7 @@ index 93f66b6..d691917 100644
  	CFLAGS="$(CFLAGS_FOR_TARGET)"; export CFLAGS; \
  	CONFIG_SHELL="$(SHELL)"; export CONFIG_SHELL; \
  	CPPFLAGS="$(CPPFLAGS_FOR_TARGET)"; export CPPFLAGS; \
-@@ -291,11 +292,13 @@ BASE_TARGET_EXPORTS = \
+@@ -335,12 +336,14 @@ BASE_TARGET_EXPORTS = \
  RAW_CXX_TARGET_EXPORTS = \
  	$(BASE_TARGET_EXPORTS) \
  	CXX_FOR_TARGET="$(RAW_CXX_FOR_TARGET)"; export CXX_FOR_TARGET; \
@@ -24,6 +24,7 @@ index 93f66b6..d691917 100644
  
  NORMAL_TARGET_EXPORTS = \
  	$(BASE_TARGET_EXPORTS) \
+ 	CXX_FOR_TARGET="$(CXX_FOR_TARGET)"; export CXX_FOR_TARGET; \
 -	CXX="$(CXX_FOR_TARGET) $(XGCC_FLAGS_FOR_TARGET) $$TFLAGS"; export CXX;
 +	CXX="$(CXX_FOR_TARGET) $(XGCC_FLAGS_FOR_TARGET) $$TFLAGS"; export CXX; \
 +	CXXCPP="$(CXX_FOR_TARGET) $(XGCC_FLAGS_FOR_TARGET) $$TFLAGS -E"; export CXX;
