@@ -37046,6 +37046,11 @@ with self;
       # Fix failing configure test due to implicit int return value of main, which results
       # in an error with clang 16.
       ../development/perl-modules/tk-configure-implicit-int-fix.patch
+      # Fix build with gcc15
+      (fetchpatch {
+        url = "https://salsa.debian.org/georgesk/perl-tk/-/raw/e4c4685bd8572fcb50626bd49b601cd3b00d7e0d/debian/patches/gcc-15.patch";
+        hash = "sha256-ZBFBG95sNRqlCvkInh3H1HuGLtp7GHjdEu/sZeAG+6c=";
+      })
     ];
     postPatch = ''
       substituteInPlace pTk/mTk/additions/imgWindow.c \
