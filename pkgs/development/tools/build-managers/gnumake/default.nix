@@ -35,7 +35,14 @@ stdenv.mkDerivation rec {
   # TODO: stdenv’s setup.sh should be aware of patch directories. It’s very
   # convenient to keep them in a separate directory but we can defer listing the
   # directory until derivation realization to avoid unnecessary Nix evaluations.
-  patches = lib.filesystem.listFilesRecursive ./patches;
+  patches = [
+    ./patches/0001-No-impure-bin-sh.patch
+    ./patches/0002-Remove-impure-dirs.patch
+    ./patches/0003-Do-not-search-for-a-C-compiler-and-set-MAKE_CXX.patch
+  ]
+  ++ lib.optional stdenv.hostPlatform.isMusl [
+    ./patches/0004-Fix-prototype.patch
+  ];
 
   nativeBuildInputs = [
     autoreconfHook
