@@ -2,20 +2,20 @@
 # $ ./refresh-tarballs.bash --targets=x86_64-unknown-linux-musl
 #
 # Metadata:
-# - nixpkgs revision: 125cefd4cf8f857e5ff1aceaef9230ba578a033d
+# - nixpkgs revision: d33e926c80e6521a55da380a4c4c44a7462af405
 # - hydra build: https://hydra.nixos.org/job/nixpkgs/trunk/stdenvBootstrapTools.x86_64-unknown-linux-musl.build/latest
-# - resolved hydra build: https://hydra.nixos.org/build/247890807
-# - instantiated derivation: /nix/store/gqri9n85rsf2983r6m8lkz0h69k4n7xi-stdenv-bootstrap-tools.drv
-# - output directory: /nix/store/b0x0qcbf1gsp50jzw52sbbgdp3jlwcjf-stdenv-bootstrap-tools
-# - build time: Fri, 26 Jan 2024 22:09:22 +0000
+# - resolved hydra build: https://hydra.nixos.org/build/307295135
+# - instantiated derivation: /nix/store/mjy44g5029hl0c680rhjc5csdsq6saay-stdenv-bootstrap-tools.drv
+# - output directory: /nix/store/1hqjy0ppprcnn70a592svfzzcgg2s7cv-stdenv-bootstrap-tools
+# - build time: Thu, 11 Sep 2025 10:42:25 +0000
 {
   bootstrapTools = import <nix/fetchurl.nix> {
-    url = "http://tarballs.nixos.org/stdenv/x86_64-unknown-linux-musl/125cefd4cf8f857e5ff1aceaef9230ba578a033d/bootstrap-tools.tar.xz";
-    hash = "sha256-t0W2MR7UwtPyYEGcRo9UOuXfaP4uUZKZXEmYGcBOuOA=";
+    url = "http://tarballs.nixos.org/stdenv/x86_64-unknown-linux-musl/d33e926c80e6521a55da380a4c4c44a7462af405/bootstrap-tools.tar.xz";
+    hash = "sha256-fCjApDDtTcQ4DfEH0P34MwuNRTTj0BTpS1669n8q7nU=";
   };
   busybox = import <nix/fetchurl.nix> {
-    url = "http://tarballs.nixos.org/stdenv/x86_64-unknown-linux-musl/125cefd4cf8f857e5ff1aceaef9230ba578a033d/busybox";
-    hash = "sha256-0U2r3EU61oqhs+oyzFABIFTCVqXOWSP0qEtnyHwjzm0=";
+    url = "http://tarballs.nixos.org/stdenv/x86_64-unknown-linux-musl/d33e926c80e6521a55da380a4c4c44a7462af405/busybox";
+    hash = "sha256-c6JDkuQLFVgbybMqFqzdQ6R6KX+Okk2V25ku2qnNVXI=";
     executable = true;
   };
 }
