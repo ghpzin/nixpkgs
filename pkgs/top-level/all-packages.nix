@@ -5378,7 +5378,9 @@ with pkgs;
 
   inherit
     (rec {
-      llvmPackagesSet = recurseIntoAttrs (callPackages ../development/compilers/llvm { });
+      llvmPackagesSet = recurseIntoAttrs (callPackages ../development/compilers/llvm {
+        stdenv = gcc15Stdenv;
+      });
 
       llvmPackages_18 = llvmPackagesSet."18";
       clang_18 = llvmPackages_18.clang;
@@ -8404,7 +8406,14 @@ with pkgs;
     if stdenv.hostPlatform.isDarwin then
       callPackage ../development/libraries/mesa/darwin.nix { }
     else
-      callPackage ../development/libraries/mesa { };
+      callPackage ../development/libraries/mesa {
+        stdenv = gcc15Stdenv;
+      };
+
+  meson = callPackage ../by-name/me/meson/package.nix {
+    stdenv = gcc15Stdenv;
+    python3 = python3.override { stdenv = gcc15Stdenv; };
+  };
 
   mesa_i686 = pkgsi686Linux.mesa; # make it build on Hydra
 
