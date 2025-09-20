@@ -14,6 +14,12 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-osVYIm/E2eTOMxvS/Tw/F/lVEV0sAORHYYpO+ZeKKnM=";
   };
 
+  patches = lib.optional stdenv.hostPlatform.isMusl [
+    # fix build with musl on gcc15
+    # https://lists.gnu.org/archive/html/which-bugs/2025-03/msg00000.html
+    ./which-fix-musl-build-with-gcc15.patch
+  ];
+
   strictDeps = true;
   enableParallelBuilding = true;
 
