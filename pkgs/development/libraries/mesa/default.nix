@@ -148,6 +148,8 @@ stdenv.mkDerivation {
   ];
 
   postPatch = ''
+    substituteInPlace src/nouveau/winsys/nouveau_bo.h \
+      --replace-fail "#ifdef __cplusplus" "#ifdef NOUVEAU_BO"
     patchShebangs .
 
     for header in ${toString mesa-gl-headers.headers}; do

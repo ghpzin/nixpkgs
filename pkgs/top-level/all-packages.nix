@@ -8404,7 +8404,9 @@ with pkgs;
     if stdenv.hostPlatform.isDarwin then
       callPackage ../development/libraries/mesa/darwin.nix { }
     else
-      callPackage ../development/libraries/mesa { };
+      callPackage ../development/libraries/mesa {
+        stdenv = llvmPackages.stdenv;
+      };
 
   mesa_i686 = pkgsi686Linux.mesa; # make it build on Hydra
 
