@@ -1,6 +1,7 @@
 {
   lib,
   stdenv,
+  fetchpatch,
   fetchurl,
   meson,
   ninja,
@@ -165,6 +166,36 @@ stdenv.mkDerivation rec {
 
   patches = [
     ./efl-elua.patch
+    (fetchpatch {
+      name = "efl-evas-gcc15.patch";
+      url = "https://git.enlightenment.org/enlightenment/efl/commit/0fcaf460c4a33eb54a51b9d8cb38321603019529.patch";
+      hash = "sha256-MZc9biAdl4OlBIbWxKDN9lyj60ux2/+TKRGOGsICs3c=";
+    })
+    (fetchpatch {
+      name = "efl-eldbus-gcc15.patch";
+      url = "https://git.enlightenment.org/enlightenment/efl/commit/9948f15ebdfae6b39f88ab58623e28c2b9320e0b.patch";
+      hash = "sha256-3ZNB7n+jR6obUHRkN/KMi7dt5bDa8Ny2UDkgRpiSUH0=";
+    })
+    (fetchpatch {
+      name = "efl-ecore-file-gcc15.patch";
+      url = "https://git.enlightenment.org/enlightenment/efl/commit/6e63309b26c25cc1c09228b9d06fd47bd6b13884.patch";
+      hash = "sha256-E5zLMMjoFIjkVq0eTw13j0RchZYEb9TEYOEV/4CAS9k=";
+    })
+    (fetchpatch {
+      name = "efl-eeze-gcc15.patch";
+      url = "https://git.enlightenment.org/enlightenment/efl/commit/60217eff9672e55c67454df13a16236d106fc92f.patch";
+      hash = "sha256-Ix8mpEqaaqNcD/VCC8NFzmJYH1IWyj7e0R1nyVt8Zow=";
+    })
+    (fetchpatch {
+      name = "efl-edje-gcc15.patch";
+      url = "https://git.enlightenment.org/enlightenment/efl/commit/628c40cce2de0a18818b40615d3351b0c9e9b889.patch";
+      hash = "sha256-2An0zuJpmADRtqE3ljjrFI4raiIeoDUW9B0yKLWldsU=";
+    })
+    (fetchpatch {
+      name = "efl-embryo-gcc15.patch";
+      url = "https://git.enlightenment.org/enlightenment/efl/commit/fc4c5ec8afc3d1d145eff9807e5235ae6bfeea83.patch";
+      hash = "sha256-6l4vKG2gbVqZWVdBccG9CBCxZPEnznnqQJ4VpKIyiXk=";
+    })
   ];
 
   postPatch = ''
