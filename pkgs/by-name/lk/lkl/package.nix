@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  fetchpatch,
   bc,
   python3,
   bison,
@@ -16,7 +17,7 @@
 stdenv.mkDerivation {
   pname = "lkl";
 
-  version = "2025-03-20";
+  version = "2025-07-04";
 
   outputs = [
     "dev"
@@ -27,8 +28,8 @@ stdenv.mkDerivation {
   src = fetchFromGitHub {
     owner = "lkl";
     repo = "linux";
-    rev = "fd33ab3d21a99a31683ebada5bd3db3a54a58800";
-    sha256 = "sha256-3uPkOyL/hoA/H2gKrEEDsuJvwOE2x27vxY5Y2DyNNxU=";
+    rev = "46f599b0575197f5756d2d171c294e1242e25a9d";
+    sha256 = "sha256-DTYNhwj2qFXdBrRohiMQLDajfpFpCrtnsLfeIUmVucs=";
   };
 
   nativeBuildInputs = [
