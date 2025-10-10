@@ -129,6 +129,7 @@ in
           kernelPatches = [
             kernelPatches.bridge_stp_helper
             kernelPatches.request_key_helper
+            kernelPatches.compile_boot_code_with_std_gnu11_5_10
           ];
         };
 
@@ -137,6 +138,7 @@ in
             kernelPatches.bridge_stp_helper
             kernelPatches.request_key_helper
             kernelPatches.export-rt-sched-migrate
+            kernelPatches.compile_boot_code_with_std_gnu11_5_10
           ];
         };
 
@@ -145,6 +147,7 @@ in
           kernelPatches = [
             kernelPatches.bridge_stp_helper
             kernelPatches.request_key_helper
+            kernelPatches.compile_boot_code_with_std_gnu11_5_15
           ];
         };
 
@@ -153,6 +156,7 @@ in
             kernelPatches.bridge_stp_helper
             kernelPatches.request_key_helper
             kernelPatches.export-rt-sched-migrate
+            kernelPatches.compile_boot_code_with_std_gnu11_5_15
           ];
         };
 
