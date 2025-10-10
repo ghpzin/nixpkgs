@@ -1,0 +1,38 @@
+diff --git a/arch/x86/Makefile b/arch/x86/Makefile
+index 69f0cb01c6..69930ed557 100644
+--- a/arch/x86/Makefile
++++ b/arch/x86/Makefile
+@@ -31,7 +31,7 @@
+ CODE16GCC_CFLAGS := -m32 -Wa,$(srctree)/arch/x86/boot/code16gcc.h
+ M16_CFLAGS	 := $(call cc-option, -m16, $(CODE16GCC_CFLAGS))
+ 
+-REALMODE_CFLAGS	:= $(M16_CFLAGS) -g -Os -DDISABLE_BRANCH_PROFILING \
++REALMODE_CFLAGS	:= -std=gnu11 $(M16_CFLAGS) -g -Os -DDISABLE_BRANCH_PROFILING \
+ 		   -Wall -Wstrict-prototypes -march=i386 -mregparm=3 \
+ 		   -fno-strict-aliasing -fomit-frame-pointer -fno-pic \
+ 		   -mno-mmx -mno-sse $(call cc-option,-fcf-protection=none)
+diff --git a/arch/x86/boot/compressed/Makefile b/arch/x86/boot/compressed/Makefile
+index 62ef24bb23..e436819859 100644
+--- a/arch/x86/boot/compressed/Makefile
++++ b/arch/x86/boot/compressed/Makefile
+@@ -27,6 +27,7 @@
+ 	vmlinux.bin.xz vmlinux.bin.lzo vmlinux.bin.lz4
+ 
+ KBUILD_CFLAGS := -m$(BITS) -O2
++KBUILD_CFLAGS += -std=gnu11
+ KBUILD_CFLAGS += -fno-strict-aliasing $(call cc-option, -fPIE, -fPIC)
+ KBUILD_CFLAGS += -DDISABLE_BRANCH_PROFILING
+ cflags-$(CONFIG_X86_32) := -march=i386
+diff --git a/drivers/firmware/efi/libstub/Makefile b/drivers/firmware/efi/libstub/Makefile
+index 8c5b5529db..534341baa8 100644
+--- a/drivers/firmware/efi/libstub/Makefile
++++ b/drivers/firmware/efi/libstub/Makefile
+@@ -7,7 +7,7 @@
+ #
+ cflags-$(CONFIG_X86_32)		:= -march=i386
+ cflags-$(CONFIG_X86_64)		:= -mcmodel=small
+-cflags-$(CONFIG_X86)		+= -m$(BITS) -D__KERNEL__ -O2 \
++cflags-$(CONFIG_X86)		+= -m$(BITS) -D__KERNEL__ -O2 -std=gnu11\
+ 				   -fPIC -fno-strict-aliasing -mno-red-zone \
+ 				   -mno-mmx -mno-sse -fshort-wchar \
+ 				   -Wno-pointer-sign \

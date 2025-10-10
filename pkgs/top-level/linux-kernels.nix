@@ -122,6 +122,7 @@ in
             kernelPatches.bridge_stp_helper
             kernelPatches.request_key_helper
             kernelPatches.rtl8761b_support
+            kernelPatches.compile_boot_code_with_std_gnu11
           ];
         };
 
@@ -137,6 +138,7 @@ in
           kernelPatches = [
             kernelPatches.bridge_stp_helper
             kernelPatches.request_key_helper
+            kernelPatches.compile_boot_code_with_std_gnu11
           ];
         };
 
