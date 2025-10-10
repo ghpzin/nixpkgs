@@ -4,7 +4,6 @@
   nixosTests,
   fetchFromGitHub,
   fetchFromGitLab,
-  fetchhg,
   runCommand,
   stdenv,
 
@@ -528,8 +527,8 @@ let
       src = fetchFromGitHub {
         owner = "nginx";
         repo = "njs";
-        rev = "0.8.9";
-        hash = "sha256-TalS9EJP+vB1o3BKaTvXXnudjKhNOcob3kDAyeKej3c=";
+        tag = "0.9.3";
+        hash = "sha256-uPtMa5OVDeynRFqQevKpqYFGd3kKXRun73YfeTew0eM=";
       };
 
       # njs module sources have to be writable during nginx build, so we copy them
