@@ -72,6 +72,20 @@
     patch = ./rtl8761b-support.patch;
   };
 
+  # Adapted for Linux 5.10 from:
+  # https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=b3bee1e7c3f2b1b77182302c7b2131c804175870
+  compile_boot_code_with_std_gnu11_5_10 = {
+    name = "compile-boot-code-with-std-gnu11-5_10";
+    patch = ./compile-boot-code-with-std-gnu11-5_10.patch;
+  };
+
+  # Adapted for Linux 5.15 from:
+  # https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=b3bee1e7c3f2b1b77182302c7b2131c804175870
+  compile_boot_code_with_std_gnu11_5_15 = {
+    name = "compile-boot-code-with-std-gnu11-5_15";
+    patch = ./compile-boot-code-with-std-gnu11-5_15.patch;
+  };
+
   export-rt-sched-migrate = {
     name = "export-rt-sched-migrate";
     patch = ./export-rt-sched-migrate.patch;
