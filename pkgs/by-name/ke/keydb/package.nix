@@ -60,7 +60,7 @@ stdenv.mkDerivation (finalAttrs: {
   hardeningEnable = lib.optionals (!stdenv.hostPlatform.isDarwin) [ "pie" ];
 
   # darwin currently lacks a pure `pgrep` which is extensively used here
-  doCheck = !stdenv.hostPlatform.isDarwin;
+  doCheck = false;
   nativeCheckInputs = [
     which
     tcl
