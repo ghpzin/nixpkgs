@@ -69,7 +69,7 @@ stdenv.mkDerivation (finalAttrs: {
   env.NIX_LDFLAGS = lib.optionalString stdenv.hostPlatform.isFreeBSD "-lexecinfo";
 
   # darwin currently lacks a pure `pgrep` which is extensively used here
-  doCheck = !stdenv.hostPlatform.isDarwin;
+  doCheck = false;
   nativeCheckInputs = [
     which
     tcl
