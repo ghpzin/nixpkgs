@@ -10976,7 +10976,7 @@ self: super: with self; {
 
   numbagg = callPackage ../development/python-modules/numbagg { };
 
-  numcodecs = callPackage ../development/python-modules/numcodecs { };
+  numcodecs = callPackage ../development/python-modules/numcodecs { inherit (pkgs) zstd; };
 
   numdifftools = callPackage ../development/python-modules/numdifftools { };
 
