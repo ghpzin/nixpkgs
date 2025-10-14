@@ -122,6 +122,10 @@ python.pkgs.buildPythonApplication rec {
     "test_get_config_dir"
   ];
 
+  # https://github.com/borgbackup/borg/issues/9039
+  # OSError: [Errno 25] Inappropriate ioctl for device: '/build/tmpz_g4fc0y/input/flagfile'
+  doCheck = false;
+
   preCheck = ''
     export HOME=$TEMP
   '';
