@@ -16,6 +16,9 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-xeOtESc0X7RZWCIpNZSHE8au9+opXwnHsAcayYLSX7w=";
   };
 
+  # Fix build with gcc15
+  env.NIX_CFLAGS_COMPILE = "-std=gnu17";
+
   makeFlags = [ "PREFIX=${placeholder "out"}" ];
 
   meta = {
