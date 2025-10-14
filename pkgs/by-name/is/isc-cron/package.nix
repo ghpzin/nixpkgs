@@ -1,6 +1,7 @@
 {
   lib,
   fetchurl,
+  fetchpatch,
   stdenv,
   replaceVars,
   vim,
@@ -29,6 +30,9 @@ stdenv.mkDerivation (finalAttrs: {
       ];
     })
   ];
+
+  # Fix build with gcc15
+  env.NIX_CFLAGS_COMPILE = "-std=gnu17";
 
   makeFlags = [
     "CC=${stdenv.cc.targetPrefix}cc"
