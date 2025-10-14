@@ -2,6 +2,7 @@
   lib,
   fetchpatch,
   fetchurl,
+  fetchpatch,
   stdenv,
   replaceVars,
   vim,
@@ -35,6 +36,9 @@ stdenv.mkDerivation (finalAttrs: {
       hash = "sha256-d1vN3TGAAOMlWpMZKnHU/RlZ5pBOl3+IXjZ4UALVqLI=";
     })
   ];
+
+  # Fix build with gcc15
+  env.NIX_CFLAGS_COMPILE = "-std=gnu17";
 
   makeFlags = [
     "CC=${stdenv.cc.targetPrefix}cc"
