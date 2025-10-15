@@ -5,14 +5,14 @@
   autoreconfHook,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "mstpd";
   version = "0.1.0";
 
   src = fetchFromGitHub {
     owner = "mstpd";
     repo = "mstpd";
-    rev = version;
+    tag = finalAttrs.version;
     hash = "sha256-m4gbVXAPIYGQvTFaSziFuOO6say5kgUsk7NSdqXgKmA=";
   };
 
@@ -25,10 +25,10 @@ stdenv.mkDerivation rec {
     "--libexecdir=$(out)/lib"
   ];
 
-  meta = with lib; {
+  meta = {
     description = "Multiple Spanning Tree Protocol daemon";
     homepage = "https://github.com/mstpd/mstpd";
-    license = licenses.gpl2Plus;
-    platforms = platforms.linux;
+    license = lib.licenses.gpl2Plus;
+    platforms = lib.platforms.linux;
   };
-}
+})
