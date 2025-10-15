@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchurl,
+  fetchpatch,
   ncurses,
   libpcap,
   nixosTests,
@@ -15,6 +16,15 @@ stdenv.mkDerivation rec {
     url = "http://ex-parrot.com/pdw/iftop/download/iftop-${version}.tar.gz";
     sha256 = "15sgkdyijb7vbxpxjavh5qm5nvyii3fqcg9mzvw7fx8s6zmfwczp";
   };
+
+  patches = [
+    # Fix build with gcc15
+    (fetchpatch {
+      name = "iftop-fix-cfgfile-read_config-signature-gcc15.patch";
+      url = "https://code.blinkace.com/pdw/iftop/-/commit/67b685c8442528bb30485f6efa212f599ef19baf.patch";
+      hash = "sha256-cqxl6pwN/vpVcHffoJWJvinNsjDc4k9edSsGvS6I9fo=";
+    })
+  ];
 
   # Explicitly link against libgcc_s, to work around the infamous
   # "libgcc_s.so.1 must be installed for pthread_cancel to work".
