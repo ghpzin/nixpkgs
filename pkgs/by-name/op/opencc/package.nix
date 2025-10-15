@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  fetchpatch,
   cmake,
   python3,
   opencc,
@@ -19,6 +20,16 @@ stdenv.mkDerivation rec {
     rev = "ver.${version}";
     sha256 = "sha256-JBTegQs9ALp4LdKKYMNp9GYEgqR9O8IkX6LqatvaTic=";
   };
+
+  patches = [
+    # Fix build with gcc15
+    # https://github.com/BYVoid/OpenCC/pull/934
+    (fetchpatch {
+      name = "opencc-SerializedValues-add-missing-include-cstdint.patch";
+      url = "https://github.com/BYVoid/OpenCC/commit/72cae18cfe4272f2b11c9ec1c44d6af7907abcab.patch";
+      hash = "sha256-Cd95AsW/tLk2l8skxqfEfQUm0t23G4ocoirauwMbuwk=";
+    })
+  ];
 
   nativeBuildInputs = [
     cmake
