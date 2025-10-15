@@ -113,11 +113,6 @@ let
     "--host_copt=${lib.getDev darwin.libresolv}/include"
   ];
 
-in
-stdenv.mkDerivation rec {
-  pname = "bazel";
-  inherit version src;
-
   darwinPatches = [
     # Bazel integrates with apple IOKit to inhibit and track system sleep.
     # Inside the darwin sandbox, these API calls are blocked, and bazel
@@ -156,6 +151,11 @@ stdenv.mkDerivation rec {
     # argument if it's found to be an empty string.
     ./patches/trim-last-argument-to-gcc-if-empty.patch
   ];
+
+in
+stdenv.mkDerivation rec {
+  pname = "bazel";
+  inherit version src;
 
   patches = lib.optionals isDarwin darwinPatches ++ [
     # patch that propagates rules_* patches below
