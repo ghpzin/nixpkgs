@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  fetchpatch,
   pkg-config,
   autoreconfHook,
   enablePsm2 ? (stdenv.hostPlatform.isx86_64 && stdenv.hostPlatform.isLinux),
@@ -23,6 +24,16 @@ stdenv.mkDerivation rec {
     rev = "v${version}";
     sha256 = "sha256-Zaf7iGr2/HWiMcH7zERz5Y9YzJ0QpHCCs+bU+qmoQTI=";
   };
+
+  patches = [
+    # Fix build with gcc15
+    # https://github.com/ofiwg/libfabric/pull/11417
+    (fetchpatch {
+      name = "libfabric-fix-opx_debug_ep_list_free-declaration-gcc15.patch";
+      url = "https://github.com/ofiwg/libfabric/commit/a7d5798788a81e8a80f44b823b61e400bcb17f3e.patch";
+      hash = "sha256-W8uSEPOO/7uMOf6EQNy5JsAOh9oeTbw+bNayryHj8HA=";
+    })
+  ];
 
   outputs = [
     "out"
