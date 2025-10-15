@@ -3,6 +3,7 @@
   # nix tooling and utilities
   lib,
   fetchurl,
+  fetchpatch,
   makeWrapper,
   writeTextFile,
   replaceVars,
@@ -386,6 +387,14 @@ stdenv.mkDerivation rec {
     (replaceVars ./bazel_rc.patch {
       bazelSystemBazelRCPath = bazelRC;
     })
+
+    # Fix build with gcc15
+    (fetchpatch {
+      name = "bazel_7-add-include-cstdint.patch";
+      url = "https://github.com/bazelbuild/bazel/commit/1d206cac050b6c7d9ce65403e6a9909a49bfe4bc.patch";
+      hash = "sha256-Tg5o1Va7dd5hvXbWhZiog+VtuiqngqbbYOkCafVudDs=";
+    })
+
   ]
   # See enableNixHacks argument above.
   ++ lib.optional enableNixHacks ./nix-build-bazel-package-hacks.patch;
