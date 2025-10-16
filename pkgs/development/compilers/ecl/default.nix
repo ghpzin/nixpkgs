@@ -58,6 +58,10 @@ stdenv.mkDerivation rec {
     })
   ];
 
+  # Fix build with gcc15, can be removed in next version:
+  # https://gitlab.com/embeddable-common-lisp/ecl/-/merge_requests/345
+  env.NIX_CFLAGS_COMPILE = "-std=gnu17";
+
   configureFlags = [
     (if threadSupport then "--enable-threads" else "--disable-threads")
     "--with-gmp-incdir=${lib.getDev gmp}/include"
