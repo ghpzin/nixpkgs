@@ -46,6 +46,9 @@ stdenv.mkDerivation {
     sed -i "s|/etc/dnsroots.global|$out/etc/dnsroots.global|" dnscache-conf.c
   '';
 
+  # Fix build with gcc15
+  env.NIX_CFLAGS_COMPILE = "-std=gnu17";
+
   installPhase = ''
     mkdir -pv $out/etc;
     make setup
