@@ -219,6 +219,41 @@ rec {
         url = "https://gitlab.winehq.org/wine/wine/-/commit/ed66bd5c97ecc17c42a4942dafac7d406c1e5120.patch";
         hash = "sha256-mn0fRZ840MYk1WZsBLcachUzyNmBUSlvf50t9jFGXp0=";
       })
+      # https://gitlab.winehq.org/wine/wine/-/merge_requests/6901
+      (pkgs.fetchpatch {
+        url = "https://gitlab.winehq.org/wine/wine/-/commit/c397e2ab7f8894c7876e3d667bd07dc2fb1b08a9.patch";
+        hash = "sha256-3x3kyE/qZCgV6lntM8iuS1AKs8FsbD2KhQLlef2T3mw=";
+      })
+      # https://gitlab.winehq.org/wine/wine/-/merge_requests/6836
+      (pkgs.fetchpatch {
+        url = "https://gitlab.winehq.org/wine/wine/-/commit/245dfb801ebb9d3d3cd857d64c17b36c82b86939.patch";
+        hash = "sha256-r0ZVgxv7YnxwmNE7XXSHWQZrvdEM36sSXK4119b0Uk4=";
+      })
+      # https://gitlab.winehq.org/wine/wine/-/merge_requests/6865
+      (pkgs.fetchpatch {
+        url = "https://gitlab.winehq.org/wine/wine/-/commit/0888ba08fbd3f05a695b522a32f0112dd791a29e.patch";
+        hash = "sha256-rMuCxG9uUm64jhHY0D9ukm72Zk0Rx3fYdib5XcUlh/8=";
+      })
+      # https://gitlab.winehq.org/wine/wine/-/merge_requests/6893
+      (pkgs.fetchpatch {
+        url = "https://gitlab.winehq.org/wine/wine/-/commit/8b6ec37fc2e981db9e3f539bdcce560470858c23.patch";
+        hash = "sha256-+Bwc10yK7JZnNTXr3YQGNI+aYL79WrIgVPPobJoq4to=";
+      })
+      # https://gitlab.winehq.org/wine/wine/-/merge_requests/6979
+      (pkgs.fetchpatch {
+        url = "https://gitlab.winehq.org/wine/wine/-/commit/2bfbd7785e6ac833ee615af907378da5ca76d36b.patch";
+        hash = "sha256-+rmAlRlUqaYh+93d//N4gyRpCTtFOdSRBOCD4H0F//w=";
+      })
+      # https://gitlab.winehq.org/wine/wine/-/merge_requests/6856
+      (pkgs.fetchpatch {
+        url = "https://gitlab.winehq.org/wine/wine/-/commit/f0960a2aef7e3856fcf4a72af89e339edce1df9f.patch";
+        hash = "sha256-rGRNoyq59scBFIwP7nUcrgAeouqCDaDljnhADa7DBks=";
+      })
+      # https://gitlab.winehq.org/wine/wine/-/merge_requests/6890
+      (pkgs.fetchpatch {
+        url = "https://gitlab.winehq.org/wine/wine/-/commit/5f8673bc4f90aac1b52f47bcb79861f385915672.patch";
+        hash = "sha256-DWCBCZw33pH4yCqoVUmALe4joQ/yY5VbitFmL3BDoUY=";
+      })
     ]
     ++ patches-binutils-2_44-fix-wine-older-than-10_2;
 
