@@ -113,6 +113,14 @@ rec {
     patches = [
       # Also look for root certificates at $NIX_SSL_CERT_FILE
       ./cert-path.patch
+
+      # Fix build with gcc15
+      # https://gitlab.winehq.org/wine/wine/-/merge_requests/7954
+      (pkgs.fetchpatch {
+        name = "wine-msvcrt-add-truncf-to-import-library.patch";
+        url = "https://gitlab.winehq.org/wine/wine/-/commit/ed66bd5c97ecc17c42a4942dafac7d406c1e5120.patch";
+        hash = "sha256-mn0fRZ840MYk1WZsBLcachUzyNmBUSlvf50t9jFGXp0=";
+      })
     ]
     ++ patches-binutils-2_44-fix-wine-older-than-10_2;
 
@@ -203,6 +211,14 @@ rec {
     patches = [
       # Also look for root certificates at $NIX_SSL_CERT_FILE
       ./cert-path.patch
+
+      # Fix build with gcc15
+      # https://gitlab.winehq.org/wine/wine/-/merge_requests/7954
+      (pkgs.fetchpatch {
+        name = "wine-msvcrt-add-truncf-to-import-library.patch";
+        url = "https://gitlab.winehq.org/wine/wine/-/commit/ed66bd5c97ecc17c42a4942dafac7d406c1e5120.patch";
+        hash = "sha256-mn0fRZ840MYk1WZsBLcachUzyNmBUSlvf50t9jFGXp0=";
+      })
     ]
     ++ patches-binutils-2_44-fix-wine-older-than-10_2;
 
