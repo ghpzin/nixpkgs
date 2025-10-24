@@ -9916,6 +9916,10 @@ with self;
 
     nativeBuildInputs = [ pkgs.postgresql.pg_config ];
 
+    # Fix build with gcc15
+    # https://github.com/bucardo/dbdpg/issues/135
+    env.NIX_CFLAGS_COMPILE = "-std=gnu17";
+
     # tests freeze in a sandbox
     doCheck = false;
 
