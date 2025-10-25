@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  fetchpatch,
   perl,
   python3,
 
@@ -36,6 +37,10 @@ stdenv.mkDerivation (finalAttrs: {
   patches = [
     # Set the date stamp to $SOURCE_DATE_EPOCH
     ./build-date.patch
+    # Fix build with gcc15, adapted from:
+    # https://github.com/amd/blis/commit/30c42202d78fd5ee5e54d50ad57348e5e541a7d5
+    # https://github.com/amd/blis/commit/a4db661b447f6d449c33629f3f45fee9b9888dc2
+    ./amd-blis-fix-build-with-gcc15.patch
   ];
 
   inherit blas64;
