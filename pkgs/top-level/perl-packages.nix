@@ -2583,6 +2583,15 @@ with self;
       url = "mirror://cpan/authors/id/S/ST/STBEY/Bit-Vector-7.4.tar.gz";
       hash = "sha256-PG2qZx/s+8Nfkqk4W1Y9ZfUN/Gvci0gF+e9GwNA1qSY=";
     };
+    patches = [
+      # Fix build with gcc15
+      # https://rt.cpan.org/Public/Bug/Display.html?id=165142
+      (fetchpatch {
+        name = "bitvector-fix-build-with-gcc15.patch";
+        url = "https://gitweb.gentoo.org/repo/gentoo.git/plain/dev-perl/Bit-Vector/files/Bit-Vector-7.400.0-c23.patch?id=10708b8f345e68000e07c38e58c8ecd9d7bbcf45";
+        hash = "sha256-UNiC4AMn4/wlwhJW+QNVCqn0ivd4nSb5N4jVAW5a0Hg=";
+      })
+    ];
     propagatedBuildInputs = [ CarpClan ];
     meta = {
       description = "Efficient bit vector, set of integers and 'big int' math library";
@@ -9916,9 +9925,16 @@ with self;
 
     nativeBuildInputs = [ pkgs.postgresql.pg_config ];
 
+    patches = [
+      (fetchpatch {
+        url = "https://github.com/bucardo/dbdpg/pull/148.diff";
+        hash = "sha256-MpVpaZoRgN1ABk6F6hFZvo9IkQJX2frHDygOTa0wics=";
+      })
+    ];
+
     # Fix build with gcc15
     # https://github.com/bucardo/dbdpg/issues/135
-    env.NIX_CFLAGS_COMPILE = "-std=gnu17";
+    # env.NIX_CFLAGS_COMPILE = "-std=gnu17";
 
     # tests freeze in a sandbox
     doCheck = false;
