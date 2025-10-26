@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  fetchpatch,
   cmake,
   libuuid,
   gnutls,
@@ -22,7 +23,21 @@ stdenv.mkDerivation rec {
     fetchSubmodules = true;
   };
 
+  patches = [
+    # Fix build with gcc15
+    # https://github.com/GothenburgBitFactory/libshared/pull/71
+    (fetchpatch {
+      name = "taskwarrior2-libshared-json-fix-build-with-gcc15.patch";
+      url = "https://github.com/GothenburgBitFactory/libshared/commit/bde76fb717c8e56e5859472ba1e890abc5b94e63.patch";
+      hash = "sha256-6esIya9VATtDbL3jOpXZtvMoIJ8ztznqUju4d4lE49w=";
+      stripLen = 1;
+      extraPrefix = "src/libshared/";
+    })
+  ];
+
   postPatch = ''
+    # ls ./src/libshared
+    # exit 1
     substituteInPlace src/commands/CmdNews.cpp \
       --replace "xdg-open" "${lib.getBin xdg-utils}/bin/xdg-open"
   '';
