@@ -4,6 +4,7 @@
   cmake,
   python3,
   fetchFromGitHub,
+  fetchpatch,
   emscripten,
   gtest,
   lit,
@@ -28,6 +29,17 @@ stdenv.mkDerivation rec {
     rev = "version_${version}";
     hash = "sha256-tkvO0gNESliRV6FOpXDQd7ZKujGe6q1mGX5V+twcE1o=";
   };
+
+  patches = [
+    # Fix build with gcc15
+    # https://github.com/WebAssembly/binaryen/issues/7683
+    # https://github.com/WebAssembly/binaryen/pull/7979
+    (fetchpatch {
+      name = "binaryen-ignore-false-gcc-warning-gcc15.patch";
+      url = "https://github.com/WebAssembly/binaryen/commit/a7c391581b38a4d49bba9f55b28658ad8af537e2.patch";
+      hash = "sha256-9MKexOaCkffdc93UeMqIfV2/EdFmvD/1oo2WVZhf51I=";
+    })
+  ];
 
   nativeBuildInputs = [
     cmake
