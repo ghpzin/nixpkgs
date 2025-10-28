@@ -23,12 +23,18 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-5sy8oWVvTmFrRlf4UU4zpw9ml+nXKUNWV3g5Mio8XSw=";
   };
 
-  # Patch to fix socks4 and socks4a support under glibc's source fortification
-  # (enabled by default since glibc 2.38-0)
   patches = [
+    # Patch to fix socks4 and socks4a support under glibc's source fortification
+    # (enabled by default since glibc 2.38-0)
     (fetchpatch {
       url = "https://www.privoxy.org/gitweb/?p=privoxy.git;a=commitdiff_plain;h=19d7684ca10f6c1279568aa19e9a9da2276851f1";
       sha256 = "sha256-bCb0RUVrWeGfqZYFHXDEEx+76xiNyVqehtLvk9C1j+4=";
+    })
+    # Fix build with gcc15
+    (fetchpatch {
+      name = "privoxy-fix-filter_function_ptr-typedef-gcc15.patch";
+      url = "https://www.privoxy.org/gitweb/?p=privoxy.git;a=commitdiff_plain;h=a826f7f394ba7a25aede5c3213cba385442c556d";
+      hash = "sha256-1euDh4H8oRxsoJhYR6hD8R3DtR7SCmGw6dxNv2Jz0TQ=";
     })
   ];
 
