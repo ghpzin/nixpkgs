@@ -61,6 +61,11 @@ rustPlatform.buildRustPackage (finalAttrs: {
     zlib
   ];
 
+  # Fix build with gcc15
+  # https://github.com/vectordotdev/vector/issues/22888
+  # https://github.com/MaterializeInc/rust-krb5-src/issues/28
+  env.NIX_CFLAGS_COMPILE = "-std=gnu17";
+
   # Without this, we get SIGSEGV failure
   RUST_MIN_STACK = 33554432;
 
