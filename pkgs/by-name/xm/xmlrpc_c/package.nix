@@ -16,6 +16,12 @@ stdenv.mkDerivation rec {
     hash = "sha256-Z9hgBiRZ6ieEwHtNeRMxnZU5+nKfU0N46OQciRjyrfY=";
   };
 
+  patches = [
+    # Fix build with gcc15
+    # https://sourceforge.net/p/xmlrpc-c/code/3318/
+    ./xmlrpc_c-fix-build-with-gcc15.patch
+  ];
+
   postPatch = ''
     rm -rf lib/expat
   '';
