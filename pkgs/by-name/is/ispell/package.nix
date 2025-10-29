@@ -20,6 +20,9 @@ stdenv.mkDerivation rec {
     ncurses
   ];
 
+  # Fix build with gcc15
+  env.NIX_CFLAGS_COMPILE = "-std=gnu17";
+
   postPatch = ''
     cat >> local.h <<EOF
     ${lib.optionalString (!stdenv.hostPlatform.isDarwin) "#define USG"}
