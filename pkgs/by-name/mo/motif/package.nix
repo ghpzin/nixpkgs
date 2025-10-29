@@ -122,12 +122,15 @@ stdenv.mkDerivation rec {
     "ac_cv_func_setpgrp_void=${lib.boolToYesNo (!stdenv.hostPlatform.isBSD)}"
   ];
 
-  env = lib.optionalAttrs stdenv.cc.isClang {
-    NIX_CFLAGS_COMPILE = toString [
+  env.NIX_CFLAGS_COMPILE = toString (
+    lib.optional stdenv.cc.isClang [
       "-Wno-error=implicit-function-declaration"
       "-Wno-error=incompatible-function-pointer-types"
-    ];
-  };
+    ]
+    ++ lib.optional stdenv.cc.isGNU [
+      "-std=gnu17"
+    ]
+  );
 
   enableParallelBuilding = true;
 
