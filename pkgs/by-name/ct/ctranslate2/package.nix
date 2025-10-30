@@ -3,6 +3,7 @@
   stdenv,
   config,
   fetchFromGitHub,
+  fetchpatch,
   cmake,
   llvmPackages, # openmp
   withMkl ? false,
@@ -37,6 +38,12 @@ stdenv'.mkDerivation (finalAttrs: {
     fetchSubmodules = true;
     hash = "sha256-AUi/MODxCSVuJhFjlhbMUyrGnK0X28B2+uTIHIg7oMg=";
   };
+
+  patches = [
+    # Fix build with gcc15, adapted from:
+    # https://github.com/jarro2783/cxxopts/pull/438
+    ./ctranslate2-cxxopts-add-missing-header-for-gcc15.patch
+  ];
 
   # Fix CMake 4 compatibility
   postPatch = ''
