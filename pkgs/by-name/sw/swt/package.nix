@@ -11,8 +11,8 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "swt";
-  version = "4.34";
-  fullVersion = "${finalAttrs.version}-202411201800";
+  version = "4.37";
+  fullVersion = "${finalAttrs.version}-202509050730";
 
   hardeningDisable = [ "format" ];
 
@@ -21,17 +21,17 @@ stdenv.mkDerivation (finalAttrs: {
     # equal on all linux systems as well as all darwin systems. Even though each
     # of these zip archives themselves contains a different hash.
     x86_64-linux.platform = "gtk-linux-x86_64";
-    x86_64-linux.hash = "sha256-lKAB2aCI3dZdt3pE7uSvSfxc8vc3oMSTCx5R+71Aqdk=";
+    x86_64-linux.hash = "sha256-SoDC28UsZypQFwE8J64dU3xS9Tip/CJR2sfYLdJc9ts=";
     aarch64-linux.platform = "gtk-linux-aarch64";
-    aarch64-linux.hash = "sha256-lKAB2aCI3dZdt3pE7uSvSfxc8vc3oMSTCx5R+71Aqdk=";
+    aarch64-linux.hash = "sha256-SoDC28UsZypQFwE8J64dU3xS9Tip/CJR2sfYLdJc9ts=";
     ppc64le-linux.platform = "gtk-linux-ppc64le";
-    ppc64le-linux.hash = "sha256-lKAB2aCI3dZdt3pE7uSvSfxc8vc3oMSTCx5R+71Aqdk=";
+    ppc64le-linux.hash = "sha256-SoDC28UsZypQFwE8J64dU3xS9Tip/CJR2sfYLdJc9ts=";
     riscv64-linux.platform = "gtk-linux-riscv64";
-    riscv64-linux.hash = "sha256-lKAB2aCI3dZdt3pE7uSvSfxc8vc3oMSTCx5R+71Aqdk=";
+    riscv64-linux.hash = "sha256-SoDC28UsZypQFwE8J64dU3xS9Tip/CJR2sfYLdJc9ts=";
     x86_64-darwin.platform = "cocoa-macosx-x86_64";
-    x86_64-darwin.hash = "sha256-Uns3fMoetbZAIrL/N0eVd42/3uygXakDdxpaxf5SWDI=";
+    x86_64-darwin.hash = "";
     aarch64-darwin.platform = "cocoa-macosx-aarch64";
-    aarch64-darwin.hash = "sha256-Uns3fMoetbZAIrL/N0eVd42/3uygXakDdxpaxf5SWDI";
+    aarch64-darwin.hash = "";
   };
   passthru.srcMetadata =
     finalAttrs.passthru.srcMetadataByPlatform.${stdenv.hostPlatform.system} or null;
