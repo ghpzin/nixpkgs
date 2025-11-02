@@ -131,9 +131,17 @@ stdenv.mkDerivation rec {
   ++ optional (with stdenv.hostPlatform; isLinux || isFreeBSD) "--with-file-aio"
   ++ map (mod: "--add-module=${mod.src}") modules;
 
-  env.NIX_CFLAGS_COMPILE =
-    "-I${libxml2.dev}/include/libxml2 -Wno-error=implicit-fallthrough"
-    + optionalString stdenv.hostPlatform.isDarwin " -Wno-error=deprecated-declarations";
+  env.NIX_CFLAGS_COMPILE = toString (
+    [
+      "-I${libxml2.dev}/include/libxml2"
+      "-Wno-error=implicit-fallthrough"
+      # Fix build with gcc15
+      "-Wno-error=unterminated-string-initialization"
+    ]
+    ++ optional stdenv.hostPlatform.isDarwin [
+      "-Wno-error=deprecated-declarations"
+    ]
+  );
 
   preConfigure = (lib.concatMapStringsSep "\n" (mod: mod.preConfigure or "") modules);
 
