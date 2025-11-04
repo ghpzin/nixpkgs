@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  fetchpatch,
   lz4,
   lzo,
   which,
@@ -23,7 +24,14 @@ let
       hash = "sha256-4Mltt0yFt4oh9hsrHL8/ch5n7nZYiXIJ1UgLktPvlKQ=";
     };
 
-    patches = lib.optional stdenv.hostPlatform.isDarwin ./darwin.patch;
+    patches = [
+      # Fix build with gcc15
+      (fetchpatch {
+        name = "sasquatch-fix-signal-gcc15.patch";
+        url = "https://gitweb.gentoo.org/repo/gentoo.git/plain/app-arch/sasquatch/files/sasquatch-4.5.1.5_signal-fix.patch?id=dae0fd41f4908e65f7f7ad83313683824bdc22bf";
+        hash = "sha256-TD6j2vhPiRdEijCnVIqhcRLuwIen1sXJ/pl7BTUEJmQ=";
+      })
+    ] ++ lib.optional stdenv.hostPlatform.isDarwin ./darwin.patch;
 
     strictDeps = true;
     nativeBuildInputs = [ which ];
