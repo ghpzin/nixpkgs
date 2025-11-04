@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  fetchpatch,
   autoreconfHook,
   ant,
   jdk,
@@ -60,6 +61,16 @@ stdenv.mkDerivation (finalAttrs: {
     outputHashAlgo = "sha256";
     outputHash = "sha256-mc/KQrwn3xpPI0ngOLcpoQDaJJm/rM8XgaX//5PiRZk=";
   };
+
+  patches = [
+    # Fix build with gcc15
+    # https://github.com/sleuthkit/sleuthkit/pull/3195
+    (fetchpatch {
+      name = "sleuthkit-avoid-defining-bool.patch";
+      url = "https://github.com/sleuthkit/sleuthkit/commit/8d710c36a947a2666bbef689155831d76fff56b9.patch";
+      hash = "sha256-/mCal0EVTM2dM5ok3OmAXQ1HiaCUi0lmhavIuwxVEMA=";
+    })
+  ];
 
   postUnpack = ''
     export IVY_HOME="$NIX_BUILD_TOP/.ant"
