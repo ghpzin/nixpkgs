@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  fetchpatch,
   supportCompressedPackets ? true,
   zlib,
   bzip2,
@@ -17,6 +18,16 @@ stdenv.mkDerivation rec {
     rev = "v${version}";
     sha256 = "sha256-JKedgHCTDnvLyLR3nGl4XFAaxXDU1TgHrxPMlRFwtBo=";
   };
+
+  patches = [
+    # Fix build with gcc15
+    # https://github.com/kazu-yamamoto/pgpdump/pull/45
+    (fetchpatch {
+      name = "pgpdump-fix-c23-compatibility.patch";
+      url = "https://github.com/kazu-yamamoto/pgpdump/commit/541442dc04259bde680b46742522177be40cc065.patch";
+      hash = "sha256-durJQWBBc8JNC8wFvhJOjIhGLXMk//dwOiDcOP2dQIY=";
+    })
+  ];
 
   buildInputs = lib.optionals supportCompressedPackets [
     zlib
