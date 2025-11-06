@@ -1,0 +1,24 @@
+From 1eafbdcfa5e53e5aad220c444d125a0c66f85cc8 Mon Sep 17 00:00:00 2001
+From: Jesse Litton <github@eternaldusk.com>
+Date: Mon, 27 Oct 2025 06:28:25 -0500
+Subject: [PATCH] Include stdint.h for uint32_t definition
+
+Will not compile on Linux (tested with gcc-14) without this header due to use of uint32_t.
+---
+ src/mcut/source/math.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/mcut/source/math.cpp b/src/mcut/source/math.cpp
+index cdb5c70eca..4f77311330 100644
+--- a/src/mcut/source/math.cpp
++++ b/src/mcut/source/math.cpp
+@@ -24,7 +24,7 @@
+ #include <algorithm> // std::sort
+ #include <cstdlib>
+ #include <tuple> // std::make_tuple std::get<>
+-
++#include <stdint.h>  // uint32_t definition
+ 
+     double square_root(const double& number)
+     {
+
