@@ -121,6 +121,9 @@ stdenv.mkDerivation (finalAttrs: {
     ./patches/no-cereal.patch
     # Cmake 4 support
     ./patches/cmake.patch
+    # Fix build with gcc15
+    # https://github.com/bambulab/BambuStudio/pull/8555
+    ./patches/bambu-studio-include-stdint-header.patch
   ];
 
   doCheck = true;
