@@ -1682,5 +1682,6 @@ in
   zrepl = runTest ./zrepl.nix;
   zwave-js = runTest ./zwave-js.nix;
   zwave-js-ui = runTest ./zwave-js-ui.nix;
+  espanso = runTest ./espanso.nix;
   # keep-sorted end
 }
