@@ -80,6 +80,12 @@ stdenv.mkDerivation {
     # this feature is introduced by the ./cross-tools-flags.patch
     NATIVE_TOOLS_CFLAGS = "-I${getDev buildPackages.ncurses}/include";
     NATIVE_TOOLS_LDFLAGS = "-L${getLib buildPackages.ncurses}/lib";
+  }
+  // lib.optionalAttrs (versionOlder version "7") {
+    # Fix build with gcc15
+    NIX_CFLAGS_COMPILE = toString [
+      "-DHAVE_DECL_STRERROR=1"
+    ];
   };
 
   strictDeps = true;
