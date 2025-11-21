@@ -216,6 +216,9 @@ stdenv.mkDerivation (finalAttrs: {
 
   env = {
     OPENLDAP_ROOT = openldap;
+    NIX_CFLAGS_COMPILE = toString [
+      "-fsanitize=address"
+    ];
   };
 
   shellHook = ''
@@ -233,6 +236,7 @@ stdenv.mkDerivation (finalAttrs: {
     export LOGNAME=''${LOGNAME:-foo}
     # set $HOME for bzr so it can create its trace file
     export HOME=$(mktemp -d)
+    ulimit -c unlimited
   '';
 
   postInstall = ''
