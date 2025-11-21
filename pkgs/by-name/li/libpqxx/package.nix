@@ -4,8 +4,11 @@
   fetchFromGitHub,
   libpq,
   python3,
+  gcc14Stdenv,
 }:
-
+let
+  stdenv = gcc14Stdenv;
+in
 stdenv.mkDerivation (finalAttrs: {
   pname = "libpqxx";
   version = "7.10.1";
