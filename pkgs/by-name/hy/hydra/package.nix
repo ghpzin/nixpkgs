@@ -47,9 +47,11 @@
   fetchFromGitHub,
   nixosTests,
   unstableGitUpdater,
+  gcc14Stdenv
 }:
 
 let
+  # stdenv = gcc14Stdenv;
   nix = nixVersions.nix_2_32;
 
   perlDeps = buildEnv {
@@ -217,6 +219,10 @@ stdenv.mkDerivation (finalAttrs: {
 
   env = {
     OPENLDAP_ROOT = openldap;
+    ASAN_OPTIONS = "detect_leaks=0";
+    NIX_CFLAGS_COMPILE = toString [
+      "-fsanitize=address"
+    ];
   };
 
   shellHook = ''
