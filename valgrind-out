@@ -1,0 +1,342 @@
+==4172254== Memcheck, a memory error detector
+==4172254== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==4172254== Using Valgrind-3.26.0-218cee2feb-20251024 and LibVEX; rerun with -h for copyright info
+==4172254== Command: /nix/var/nix/builds/nix-build-hydra-0-unstable-2025-11-06.drv-3/b/source/build/src/hydra-queue-runner/hydra-queue-runner -vvvv --build-one 1
+==4172254== Parent PID: 4169674
+==4172254== 
+--4172254-- 
+--4172254-- Valgrind options:
+--4172254--    --tool=memcheck
+--4172254--    --verbose
+--4172254--    --log-file=valgrind-out
+--4172254-- Contents of /proc/version:
+--4172254--   Linux version 6.18.1 (nixbld@localhost) (gcc (GCC) 15.2.0, GNU ld (GNU Binutils) 2.44) #1-NixOS SMP PREEMPT_DYNAMIC Fri Dec 12 17:42:47 UTC 2025
+--4172254-- 
+--4172254-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed-fma
+--4172254-- Page sizes: currently 4096, max supported 4096
+--4172254-- Valgrind library directory: /nix/store/w47343cgic2l4m3xgdaxbn3snbp8s9sp-valgrind-3.26.0/libexec/valgrind
+--4172254-- Reading syms from /nix/var/nix/builds/nix-build-hydra-0-unstable-2025-11-06.drv-3/b/source/build/src/hydra-queue-runner/hydra-queue-runner
+--4172254-- Reading syms from /nix/store/j193mfi0f921y0kfs8vjc1znnr45ispv-glibc-2.40-66/lib/ld-linux-x86-64.so.2
+==4172254== Downloading debug info for /nix/store/j193mfi0f921y0kfs8vjc1znnr45ispv-glibc-2.40-66/lib/ld-linux-x86-64.so.2...
+--4172254--   Considering /home/ghpzin/.cache/debuginfod_client/6023187b99d19874a17cb411cdc17bff52de0c51/debuginfo ..
+--4172254--   .. build-id is valid
+==4172254== Successfully downloaded debug file for /nix/store/j193mfi0f921y0kfs8vjc1znnr45ispv-glibc-2.40-66/lib/ld-linux-x86-64.so.2
+--4172254-- Reading syms from /nix/store/w47343cgic2l4m3xgdaxbn3snbp8s9sp-valgrind-3.26.0/libexec/valgrind/memcheck-amd64-linux
+--4172254--    object doesn't have a dynamic symbol table
+--4172254-- Scheduler: using generic scheduler lock implementation.
+--4172254-- Reading suppressions file: /nix/store/w47343cgic2l4m3xgdaxbn3snbp8s9sp-valgrind-3.26.0/libexec/valgrind/default.supp
+==4172254== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-4172254-by-ghpzin-on-???
+==4172254== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-4172254-by-ghpzin-on-???
+==4172254== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-4172254-by-ghpzin-on-???
+==4172254== 
+==4172254== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==4172254== don't want to do, unless you know exactly what you're doing,
+==4172254== or are doing some strange experiment):
+==4172254==   /nix/store/w47343cgic2l4m3xgdaxbn3snbp8s9sp-valgrind-3.26.0/libexec/valgrind/../../bin/vgdb --pid=4172254 ...command...
+==4172254== 
+==4172254== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==4172254==   /path/to/gdb /nix/var/nix/builds/nix-build-hydra-0-unstable-2025-11-06.drv-3/b/source/build/src/hydra-queue-runner/hydra-queue-runner
+==4172254== and then give GDB the following command
+==4172254==   target remote | /nix/store/w47343cgic2l4m3xgdaxbn3snbp8s9sp-valgrind-3.26.0/libexec/valgrind/../../bin/vgdb --pid=4172254
+==4172254== --pid is optional if only one valgrind process is running
+==4172254== 
+==4172254== Downloading debug info for /nix/store/w47343cgic2l4m3xgdaxbn3snbp8s9sp-valgrind-3.26.0/libexec/valgrind/memcheck-amd64-linux...
+--4172254--   Considering /home/ghpzin/.cache/debuginfod_client/b1162de2ca8a401ac40d631e2caaa433c3987af7/debuginfo ..
+--4172254--   .. build-id is valid
+==4172254== Successfully downloaded debug file for /nix/store/w47343cgic2l4m3xgdaxbn3snbp8s9sp-valgrind-3.26.0/libexec/valgrind/memcheck-amd64-linux
+--4172254-- REDIR: 0x40fb7d0 (ld-linux-x86-64.so.2:strlen) redirected to 0x580d0b92 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--4172254-- REDIR: 0x40fa160 (ld-linux-x86-64.so.2:strcmp) redirected to 0x580d0bac (vgPlain_amd64_linux_REDIR_FOR_strcmp)
+--4172254-- REDIR: 0x40f9f30 (ld-linux-x86-64.so.2:index) redirected to 0x580d0be5 (vgPlain_amd64_linux_REDIR_FOR_index)
+--4172254-- REDIR: 0x40f92c0 (ld-linux-x86-64.so.2:bcmp) redirected to 0x580d0bc7 (vgPlain_amd64_linux_REDIR_FOR_memcmp)
+--4172254-- Reading syms from /nix/store/w47343cgic2l4m3xgdaxbn3snbp8s9sp-valgrind-3.26.0/libexec/valgrind/vgpreload_core-amd64-linux.so
+--4172254-- Reading syms from /nix/store/w47343cgic2l4m3xgdaxbn3snbp8s9sp-valgrind-3.26.0/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+==4172254== WARNING: new redirection conflicts with existing -- ignoring it
+--4172254--     old: 0x040fa160 (strcmp              ) R-> (0000.0) 0x580d0bac vgPlain_amd64_linux_REDIR_FOR_strcmp
+==4172254== Downloading debug info for /nix/store/w47343cgic2l4m3xgdaxbn3snbp8s9sp-valgrind-3.26.0/libexec/valgrind/vgpreload_memcheck-amd64-linux.so...
+--4172254--   Considering /home/ghpzin/.cache/debuginfod_client/c3fbb52f4245d7ab12a1192643bd6f48262e71d1/debuginfo ..
+--4172254--   .. build-id is valid
+==4172254== Successfully downloaded debug file for /nix/store/w47343cgic2l4m3xgdaxbn3snbp8s9sp-valgrind-3.26.0/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+--4172254--     new: 0x040fa160 (strcmp              ) R-> (2016.0) 0x04924f30 strcmp
+==4172254== WARNING: new redirection conflicts with existing -- ignoring it
+--4172254--     old: 0x040fb7d0 (strlen              ) R-> (0000.0) 0x580d0b92 vgPlain_amd64_linux_REDIR_FOR_strlen
+--4172254--     new: 0x040fb7d0 (strlen              ) R-> (2007.0) 0x04923990 strlen
+--4172254-- REDIR: 0x40f9590 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4929be0 (mempcpy)
+--4172254-- Reading syms from /nix/store/xb8ni2r98d7nd8015fczz6g4s55njjkq-nix-util-2.32.4/lib/libnixutil.so.2.32.4
+--4172254-- Reading syms from /nix/store/qmgiglr1dbi3pw3m06dmrwf96vckqrc4-nix-store-2.32.4/lib/libnixstore.so.2.32.4
+--4172254-- Reading syms from /nix/store/flc699amgffcjzyx8j0izmb3jkb5sadq-nix-main-2.32.4/lib/libnixmain.so.2.32.4
+--4172254-- Reading syms from /nix/store/m8rskj9i7ffp7ibm1v2jhijxmgms2pp0-libpqxx-7.10.1/lib/libpqxx-7.10.so
+--4172254-- Reading syms from /nix/store/a68bpbl58adkr3gkdw0ginvdby7q41cs-prometheus-cpp-1.3.0/lib/libprometheus-cpp-core.so.1.3.0
+--4172254-- Reading syms from /nix/store/a68bpbl58adkr3gkdw0ginvdby7q41cs-prometheus-cpp-1.3.0/lib/libprometheus-cpp-pull.so.1.3.0
+--4172254-- Reading syms from /nix/store/xc0ga87wdclrx54qjaryahkkmkmqi9qz-gcc-15.2.0-lib/lib/libstdc++.so.6.0.34
+--4172254-- Reading syms from /nix/store/j193mfi0f921y0kfs8vjc1znnr45ispv-glibc-2.40-66/lib/libm.so.6
+--4172254-- Reading syms from /nix/store/b7kx9bkjsma9wslr1cg0316m5jy450l8-gcc-15.2.0-libgcc/lib/libgcc_s.so.1
+--4172254-- Reading syms from /nix/store/j193mfi0f921y0kfs8vjc1znnr45ispv-glibc-2.40-66/lib/libc.so.6
+==4172254== Downloading debug info for /nix/store/j193mfi0f921y0kfs8vjc1znnr45ispv-glibc-2.40-66/lib/libc.so.6...
+--4172254--   Considering /home/ghpzin/.cache/debuginfod_client/0fc9ba30a7b9cd2461e00da735b7d368d66c4e3d/debuginfo ..
+--4172254--   .. build-id is valid
+==4172254== Successfully downloaded debug file for /nix/store/j193mfi0f921y0kfs8vjc1znnr45ispv-glibc-2.40-66/lib/libc.so.6
+--4172254-- Reading syms from /nix/store/sz1sppa81v2byaprz6g31a9lbqiqjky5-libarchive-3.8.4-lib/lib/libarchive.so.13.8.4
+--4172254-- Reading syms from /nix/store/9dywybz2rnr0bydx6q6hsg50v3prnksy-libblake3-1.8.2/lib/libblake3.so.1.8.2
+--4172254-- Reading syms from /nix/store/rfm5m2l26lqkskcvxn5bm5xqh6c8wqr5-openssl-3.6.0/lib/libcrypto.so.3
+--4172254-- Reading syms from /nix/store/n0jc1q20m3ar8q0vyi0mvz7cmvf0gwsh-libsodium-1.0.20/lib/libsodium.so.26.2.0
+--4172254-- Reading syms from /nix/store/rj1cvkpc8nijyg7mv90c58s4kkhz3fiq-brotli-1.2.0-lib/lib/libbrotlidec.so.1.2.0
+--4172254-- Reading syms from /nix/store/rj1cvkpc8nijyg7mv90c58s4kkhz3fiq-brotli-1.2.0-lib/lib/libbrotlienc.so.1.2.0
+--4172254-- Reading syms from /nix/store/zdi89zrhck7m617hkw9xxd8g8is9mrx8-libcpuid-0.8.1/lib/libcpuid.so.17.1.1
+--4172254-- Reading syms from /nix/store/p2wldq3fdg04idr5gb217cc44jh93pkw-boost-1.87.0/lib/libboost_context.so.1.87.0
+--4172254-- Reading syms from /nix/store/p2wldq3fdg04idr5gb217cc44jh93pkw-boost-1.87.0/lib/libboost_iostreams.so.1.87.0
+--4172254-- Reading syms from /nix/store/p2wldq3fdg04idr5gb217cc44jh93pkw-boost-1.87.0/lib/libboost_url.so.1.87.0
+--4172254-- Reading syms from /nix/store/0apq92vpf3f3kll8vl9nhjq1gaaffibk-curl-8.17.0/lib/libcurl.so.4.8.0
+--4172254-- Reading syms from /nix/store/34gfp4c70fvzv6v708dz595q33bczamh-libseccomp-2.6.0-lib/lib/libseccomp.so.2.6.0
+--4172254-- Reading syms from /nix/store/f6zwd0xdld51287as0sv79kbaf2pcayh-sqlite-3.51.1/lib/libsqlite3.so.3.51.1
+--4172254-- Reading syms from /nix/store/rsna05bhczjs6qzc6qzrhr8d8ihjxx2m-aws-sdk-cpp-1.11.647/lib/libaws-cpp-sdk-transfer.so
+--4172254-- Reading syms from /nix/store/rsna05bhczjs6qzc6qzrhr8d8ihjxx2m-aws-sdk-cpp-1.11.647/lib/libaws-cpp-sdk-s3.so
+--4172254-- Reading syms from /nix/store/rsna05bhczjs6qzc6qzrhr8d8ihjxx2m-aws-sdk-cpp-1.11.647/lib/libaws-cpp-sdk-identity-management.so
+--4172254-- Reading syms from /nix/store/rsna05bhczjs6qzc6qzrhr8d8ihjxx2m-aws-sdk-cpp-1.11.647/lib/libaws-cpp-sdk-core.so
+--4172254-- Reading syms from /nix/store/zw51wnl03im0wwb972aw06kzv7cshs8g-libpq-18.1/lib/libpq.so.5.18
+--4172254-- Reading syms from /nix/store/dimzg3gznijqsqck1134n1n401am58ni-civetweb-1.16/lib/libcivetweb-cpp.so.1.15.0
+--4172254-- Reading syms from /nix/store/c2qsgf2832zi4n29gfkqgkjpvmbmxam6-zlib-1.3.1/lib/libz.so.1.3.1
+--4172254-- Reading syms from /nix/store/dimzg3gznijqsqck1134n1n401am58ni-civetweb-1.16/lib/libcivetweb.so.1.15.0
+--4172254-- Reading syms from /nix/store/j193mfi0f921y0kfs8vjc1znnr45ispv-glibc-2.40-66/lib/libdl.so.2
+--4172254-- Reading syms from /nix/store/42hsdp2wh69pclsi2flbarql4fls0sm8-acl-2.3.2/lib/libacl.so.1.1.2302
+--4172254-- Reading syms from /nix/store/w07dqm9na06xgf9vbs0xqrlzya9p7g6b-zstd-1.5.7/lib/libzstd.so.1.5.7
+--4172254-- Reading syms from /nix/store/0c22zivvf0yspdvr2960rvmjgiwwi5wm-bzip2-1.0.8/lib/libbz2.so.1.0.8
+--4172254-- Reading syms from /nix/store/b32rwnzms52mwv98hkbadpl1mamzpfvx-xz-5.8.1/lib/liblzma.so.5.8.1
+--4172254-- Reading syms from /nix/store/y68hvcdj0j31x7hy9qnijswqykp21wvz-libxml2-2.15.1/lib/libxml2.so.16.1.1
+--4172254-- Reading syms from /nix/store/j193mfi0f921y0kfs8vjc1znnr45ispv-glibc-2.40-66/lib/libpthread.so.0
+==4172254== Downloading debug info for /nix/store/j193mfi0f921y0kfs8vjc1znnr45ispv-glibc-2.40-66/lib/libpthread.so.0...
+--4172254--   Considering /home/ghpzin/.cache/debuginfod_client/a61f8d704a69b88c129057796d755260479cc36c/debuginfo ..
+--4172254--   .. build-id is valid
+==4172254== Successfully downloaded debug file for /nix/store/j193mfi0f921y0kfs8vjc1znnr45ispv-glibc-2.40-66/lib/libpthread.so.0
+--4172254-- Reading syms from /nix/store/m6ayf56wqpsbhzq8ljii2k9755z21a69-onetbb-2022.3.0/lib/libtbb.so.12.17
+--4172254-- Reading syms from /nix/store/rj1cvkpc8nijyg7mv90c58s4kkhz3fiq-brotli-1.2.0-lib/lib/libbrotlicommon.so.1.2.0
+--4172254-- Reading syms from /nix/store/j193mfi0f921y0kfs8vjc1znnr45ispv-glibc-2.40-66/lib/librt.so.1
+--4172254-- Reading syms from /nix/store/p2wldq3fdg04idr5gb217cc44jh93pkw-boost-1.87.0/lib/libboost_regex.so.1.87.0
+--4172254-- Reading syms from /nix/store/p2wldq3fdg04idr5gb217cc44jh93pkw-boost-1.87.0/lib/libboost_random.so.1.87.0
+--4172254-- Reading syms from /nix/store/p2wldq3fdg04idr5gb217cc44jh93pkw-boost-1.87.0/lib/libboost_system.so.1.87.0
+--4172254-- Reading syms from /nix/store/6nzj1syqhr82l6x6gzg8rvrgd9qlm7dz-icu4c-76.1/lib/libicui18n.so.76.1
+--4172254-- Reading syms from /nix/store/6nzj1syqhr82l6x6gzg8rvrgd9qlm7dz-icu4c-76.1/lib/libicuuc.so.76.1
+--4172254-- Reading syms from /nix/store/qflgvhllyh98p52gh8wjlizfphhzsxb8-nghttp3-1.13.1/lib/libnghttp3.so.9.5.1
+--4172254-- Reading syms from /nix/store/m0xx7svz6967pw5knhqff8m0f48w0gj0-ngtcp2-1.18.0/lib/libngtcp2_crypto_ossl.so.0.1.0
+--4172254-- Reading syms from /nix/store/m0xx7svz6967pw5knhqff8m0f48w0gj0-ngtcp2-1.18.0/lib/libngtcp2.so.16.7.1
+--4172254-- Reading syms from /nix/store/bhhlhxd7xzvmgyvxhjls4x09xfxfnrwc-nghttp2-1.67.1-lib/lib/libnghttp2.so.14.29.1
+--4172254-- Reading syms from /nix/store/kywwgk85nl83mpf10av3bvm2khdlq5ib-libidn2-2.3.8/lib/libidn2.so.0.4.0
+--4172254-- Reading syms from /nix/store/mxx1l7d0zhvqd9758rcbz0sbbaimkkq2-libssh2-1.11.1/lib/libssh2.so.1.0.1
+--4172254-- Reading syms from /nix/store/yrfd45bhkyv1hbsvl81987ri326qbb3z-libpsl-0.21.5/lib/libpsl.so.5.3.5
+--4172254-- Reading syms from /nix/store/rfm5m2l26lqkskcvxn5bm5xqh6c8wqr5-openssl-3.6.0/lib/libssl.so.3
+--4172254-- Reading syms from /nix/store/3n3j314vsy174dnwks8dd6c0vrqvh8h6-krb5-1.22.1-lib/lib/libgssapi_krb5.so.2.2
+--4172254-- Reading syms from /nix/store/jcpjicm40vxjks57n947ldzy9jk4yi5d-aws-crt-cpp-0.34.3/lib/libaws-crt-cpp.so
+--4172254-- Reading syms from /nix/store/g7d90as5zpsdxs3z3kyh64kyip27wv5r-aws-c-mqtt-0.13.3/lib/libaws-c-mqtt.so.1.0.0
+--4172254-- Reading syms from /nix/store/0n1nzyalnbmgihbfz9jf1aqsivjdnlpb-aws-c-event-stream-0.5.7/lib/libaws-c-event-stream.so.1.0.0
+--4172254-- Reading syms from /nix/store/xhrbz26dvfcz8yi0rk1d098zbkan5n4r-aws-c-s3-0.8.7/lib/libaws-c-s3.so.1.0.0
+--4172254-- Reading syms from /nix/store/nck2h70cls9wffgwshhj6mbvz4iimw3c-aws-c-auth-0.9.1/lib/libaws-c-auth.so.1.0.0
+--4172254-- Reading syms from /nix/store/ysk74dm7sw6ihip08dasqw8swb5hbqpp-aws-c-http-0.10.4/lib/libaws-c-http.so.1.0.0
+--4172254-- Reading syms from /nix/store/ayrc8f6p033dkgx7k3ybrkvhp1h4nwly-aws-c-io-0.22.0/lib/libaws-c-io.so.1.0.0
+--4172254-- Reading syms from /nix/store/ph36brnzblfbx1q4czsf37x8n3hfq786-s2n-tls-1.5.27/lib/libs2n.so.1.0.0
+--4172254-- Reading syms from /nix/store/wxhvarlj4glxm3s2dz6b3r94pvwhxscd-aws-c-cal-0.9.2/lib/libaws-c-cal.so.1.0.0
+--4172254-- Reading syms from /nix/store/7vbwa19g7009w784li5sgwwbqxj7k0v0-aws-checksums-0.2.7/lib/libaws-checksums.so.1.0.0
+--4172254-- Reading syms from /nix/store/jm9vwj0ad1wkhc9djvvk4ibdbjaqh7lh-aws-c-compression-0.3.1/lib/libaws-c-compression.so.1.0.0
+--4172254-- Reading syms from /nix/store/26zckks9d95qx221wi1wzjmyfkqs8rad-aws-c-sdkutils-0.2.4/lib/libaws-c-sdkutils.so.1.0.0
+--4172254-- Reading syms from /nix/store/0yhw1568sg9gy44k0q1901zgk1vap12f-aws-c-common-0.12.4/lib/libaws-c-common.so.1.0.0
+--4172254-- Reading syms from /nix/store/rsna05bhczjs6qzc6qzrhr8d8ihjxx2m-aws-sdk-cpp-1.11.647/lib/libaws-cpp-sdk-cognito-identity.so
+--4172254-- Reading syms from /nix/store/rsna05bhczjs6qzc6qzrhr8d8ihjxx2m-aws-sdk-cpp-1.11.647/lib/libaws-cpp-sdk-sts.so
+--4172254-- Reading syms from /nix/store/6lnqmp6z002x7i7if04a8y7y4v29pv2k-attr-2.5.2/lib/libattr.so.1.1.2502
+--4172254-- Reading syms from /nix/store/hlcdbvwjlzjd2x86fxghzj1gpzplccqw-libunistring-1.4.1/lib/libunistring.so.5.2.1
+--4172254-- Reading syms from /nix/store/3n3j314vsy174dnwks8dd6c0vrqvh8h6-krb5-1.22.1-lib/lib/libkrb5.so.3.3
+--4172254-- Reading syms from /nix/store/3n3j314vsy174dnwks8dd6c0vrqvh8h6-krb5-1.22.1-lib/lib/libk5crypto.so.3.1
+--4172254-- Reading syms from /nix/store/3n3j314vsy174dnwks8dd6c0vrqvh8h6-krb5-1.22.1-lib/lib/libcom_err.so.3.0
+--4172254-- Reading syms from /nix/store/3n3j314vsy174dnwks8dd6c0vrqvh8h6-krb5-1.22.1-lib/lib/libkrb5support.so.0.1
+--4172254-- Reading syms from /nix/store/bk5b5k07j29a1cwglzl6zaissg0bi8i1-keyutils-1.6.3-lib/lib/libkeyutils.so.1.10
+--4172254-- Reading syms from /nix/store/j193mfi0f921y0kfs8vjc1znnr45ispv-glibc-2.40-66/lib/libresolv.so.2
+--4172254-- REDIR: 0x40fb970 (ld-linux-x86-64.so.2:strncmp) redirected to 0x4924660 (strncmp)
+==4172254== Downloading debug info for /nix/store/w47343cgic2l4m3xgdaxbn3snbp8s9sp-valgrind-3.26.0/libexec/valgrind/vgpreload_core-amd64-linux.so...
+--4172254--   Considering /home/ghpzin/.cache/debuginfod_client/9ab218c80e59779dbb76bb6d6d12ba15ddfe8541/debuginfo ..
+--4172254--   .. build-id is valid
+==4172254== Successfully downloaded debug file for /nix/store/w47343cgic2l4m3xgdaxbn3snbp8s9sp-valgrind-3.26.0/libexec/valgrind/vgpreload_core-amd64-linux.so
+--4172254-- REDIR: 0x542f860 (libc.so.6:strnlen) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542f8f0 (libc.so.6:strpbrk) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542d590 (libc.so.6:strcmp) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x5444ea0 (libc.so.6:wcsnlen) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542c5d0 (libc.so.6:memset) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x54444b0 (libc.so.6:wcslen) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x54ac130 (libc.so.6:__memcpy_chk) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542c540 (libc.so.6:memrchr) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x5444e20 (libc.so.6:wcsncpy) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542b9f0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x5443280 (libc.so.6:wcschr) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542d480 (libc.so.6:index) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542f920 (libc.so.6:rindex) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x5443350 (libc.so.6:wcscmp) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542c810 (libc.so.6:stpncpy) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x5451990 (libc.so.6:wmemchr) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542f6f0 (libc.so.6:strncmp) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542c880 (libc.so.6:strcasecmp) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542e6f0 (libc.so.6:strcspn) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x5444270 (libc.so.6:wcscpy) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542d410 (libc.so.6:strcat) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542f5e0 (libc.so.6:strncasecmp_l) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542d500 (libc.so.6:strchrnul) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542b8f0 (libc.so.6:bcmp) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542e680 (libc.so.6:strcpy) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542c920 (libc.so.6:strcasecmp_l) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542f4b0 (libc.so.6:strlen) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542f790 (libc.so.6:strncpy) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x5451a20 (libc.so.6:wmemcmp) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x54ac250 (libc.so.6:__memmove_chk) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+==4172254== WARNING: new redirection conflicts with existing -- ignoring it
+--4172254--     old: 0x054fb550 (__memcpy_chk_avx_una) R-> (2030.0) 0x04929d00 __memcpy_chk
+--4172254--     new: 0x054fb550 (__memcpy_chk_avx_una) R-> (2024.0) 0x04929560 __memmove_chk
+--4172254-- REDIR: 0x542c7a0 (libc.so.6:stpcpy) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542c300 (libc.so.6:memmove) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+==4172254== Preferring higher priority redirection:
+--4172254--     old: 0x054fb580 (__memcpy_avx_unalign) R-> (2018.0) 0x049266e0 __memcpy_avx_unaligned_erms
+--4172254--     new: 0x054fb580 (__memcpy_avx_unalign) R-> (2018.1) 0x04928760 memmove
+--4172254-- REDIR: 0x542b860 (libc.so.6:memchr) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542fb40 (libc.so.6:strspn) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x5442e50 (libc.so.6:wcpncpy) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542c420 (libc.so.6:mempcpy) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542f540 (libc.so.6:strncasecmp) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542c6d0 (libc.so.6:rawmemchr) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+==4172254== WARNING: new redirection conflicts with existing -- ignoring it
+--4172254--     old: 0x054fb550 (__memcpy_chk_avx_una) R-> (2030.0) 0x04929d00 __memcpy_chk
+--4172254--     new: 0x054fb550 (__memcpy_chk_avx_una) R-> (2024.0) 0x04929560 __memmove_chk
+--4172254-- REDIR: 0x5430490 (libc.so.6:strstr) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+--4172254-- REDIR: 0x542f680 (libc.so.6:strncat) redirected to 0x490f1af (_vgnU_ifunc_wrapper)
+==4172254== WARNING: new redirection conflicts with existing -- ignoring it
+--4172254--     old: 0x054fb550 (__memcpy_chk_avx_una) R-> (2030.0) 0x04929d00 __memcpy_chk
+--4172254--     new: 0x054fb550 (__memcpy_chk_avx_una) R-> (2024.0) 0x04929560 __memmove_chk
+==4172254== WARNING: new redirection conflicts with existing -- ignoring it
+--4172254--     old: 0x054fb550 (__memcpy_chk_avx_una) R-> (2030.0) 0x04929d00 __memcpy_chk
+--4172254--     new: 0x054fb550 (__memcpy_chk_avx_una) R-> (2024.0) 0x04929560 __memmove_chk
+==4172254== WARNING: new redirection conflicts with existing -- ignoring it
+--4172254--     old: 0x054fb550 (__memcpy_chk_avx_una) R-> (2030.0) 0x04929d00 __memcpy_chk
+--4172254--     new: 0x054fb550 (__memcpy_chk_avx_una) R-> (2024.0) 0x04929560 __memmove_chk
+==4172254== WARNING: new redirection conflicts with existing -- ignoring it
+--4172254--     old: 0x054fb550 (__memcpy_chk_avx_una) R-> (2030.0) 0x04929d00 __memcpy_chk
+--4172254--     new: 0x054fb550 (__memcpy_chk_avx_una) R-> (2024.0) 0x04929560 __memmove_chk
+==4172254== WARNING: new redirection conflicts with existing -- ignoring it
+--4172254--     old: 0x054fb550 (__memcpy_chk_avx_una) R-> (2030.0) 0x04929d00 __memcpy_chk
+--4172254--     new: 0x054fb550 (__memcpy_chk_avx_una) R-> (2024.0) 0x04929560 __memmove_chk
+==4172254== WARNING: new redirection conflicts with existing -- ignoring it
+--4172254--     old: 0x054fb550 (__memcpy_chk_avx_una) R-> (2030.0) 0x04929d00 __memcpy_chk
+--4172254--     new: 0x054fb550 (__memcpy_chk_avx_una) R-> (2024.0) 0x04929560 __memmove_chk
+==4172254== WARNING: new redirection conflicts with existing -- ignoring it
+--4172254--     old: 0x054fb550 (__memcpy_chk_avx_una) R-> (2030.0) 0x04929d00 __memcpy_chk
+--4172254--     new: 0x054fb550 (__memcpy_chk_avx_una) R-> (2024.0) 0x04929560 __memmove_chk
+==4172254== WARNING: new redirection conflicts with existing -- ignoring it
+--4172254--     old: 0x054fb550 (__memcpy_chk_avx_una) R-> (2030.0) 0x04929d00 __memcpy_chk
+--4172254--     new: 0x054fb550 (__memcpy_chk_avx_una) R-> (2024.0) 0x04929560 __memmove_chk
+--4172254-- REDIR: 0x55001b0 (libc.so.6:__strrchr_avx2) redirected to 0x4923040 (rindex)
+--4172254-- REDIR: 0x54fe300 (libc.so.6:__strlen_avx2) redirected to 0x4923870 (strlen)
+--4172254-- REDIR: 0x54fae20 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x4927c60 (bcmp)
+--4172254-- REDIR: 0x54ff3e0 (libc.so.6:__strncmp_avx2) redirected to 0x4924390 (strncmp)
+--4172254-- REDIR: 0x5427690 (libc.so.6:malloc) redirected to 0x491979a (malloc)
+--4172254-- REDIR: 0x54ffa40 (libc.so.6:__strncpy_avx2) redirected to 0x4923b90 (strncpy)
+--4172254-- REDIR: 0x5427de0 (libc.so.6:free) redirected to 0x491cb9d (free)
+--4172254-- REDIR: 0x54287d0 (libc.so.6:calloc) redirected to 0x49214c3 (calloc)
+--4172254-- Reading syms from /nix/store/m6ayf56wqpsbhzq8ljii2k9755z21a69-onetbb-2022.3.0/lib/libtbbmalloc.so.2.17
+--4172254-- REDIR: 0x54fbf80 (libc.so.6:__memset_avx2_unaligned_erms) redirected to 0x4928600 (memset)
+--4172254-- REDIR: 0x54fd720 (libc.so.6:__strchr_avx2) redirected to 0x49232d0 (index)
+--4172254-- REDIR: 0x54fab80 (libc.so.6:__memchr_avx2) redirected to 0x4924fb0 (memchr)
+--4172254-- REDIR: 0x54fb580 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x4928760 (memmove)
+--4172254-- REDIR: 0x54fc290 (libc.so.6:__stpcpy_avx2) redirected to 0x4927e20 (stpcpy)
+--4172254-- REDIR: 0x54fb540 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4929760 (mempcpy)
+--4172254-- REDIR: 0x54fd960 (libc.so.6:__strchrnul_avx2) redirected to 0x4929610 (strchrnul)
+--4172254-- REDIR: 0x5428070 (libc.so.6:realloc) redirected to 0x49216e1 (realloc)
+--4172254-- REDIR: 0x50a6720 (libstdc++.so.6:operator new(unsigned long)) redirected to 0x4919f4d (operator new(unsigned long))
+==4172254== Downloading debug info for /nix/store/xb8ni2r98d7nd8015fczz6g4s55njjkq-nix-util-2.32.4/lib/libnixutil.so.2.32.4...
+--4172254--   Considering /home/ghpzin/.cache/debuginfod_client/0c74a0be9ca3dd957abe2cd192a8b2af88d43e28/debuginfo ..
+--4172254--   .. build-id is valid
+==4172254== Successfully downloaded debug file for /nix/store/xb8ni2r98d7nd8015fczz6g4s55njjkq-nix-util-2.32.4/lib/libnixutil.so.2.32.4
+--4172254-- REDIR: 0x50a4840 (libstdc++.so.6:operator delete(void*, unsigned long)) redirected to 0x491de23 (operator delete(void*, unsigned long))
+==4172254== Downloading debug info for /nix/store/qmgiglr1dbi3pw3m06dmrwf96vckqrc4-nix-store-2.32.4/lib/libnixstore.so.2.32.4...
+--4172254--   Considering /home/ghpzin/.cache/debuginfod_client/56611af33586aa925e1c7693f4e93da0cd0dcc34/debuginfo ..
+--4172254--   .. build-id is valid
+==4172254== Successfully downloaded debug file for /nix/store/qmgiglr1dbi3pw3m06dmrwf96vckqrc4-nix-store-2.32.4/lib/libnixstore.so.2.32.4
+--4172254-- REDIR: 0x50a4830 (libstdc++.so.6:operator delete(void*)) redirected to 0x491d92f (operator delete(void*))
+--4172254-- REDIR: 0x54fdb50 (libc.so.6:__strcmp_avx2) redirected to 0x4924e20 (strcmp)
+--4172254-- REDIR: 0x5440620 (libc.so.6:__strstr_sse2_unaligned) redirected to 0x4929d90 (strstr)
+==4172254== Downloading debug info for /nix/store/flc699amgffcjzyx8j0izmb3jkb5sadq-nix-main-2.32.4/lib/libnixmain.so.2.32.4...
+--4172254--   Considering /home/ghpzin/.cache/debuginfod_client/ba75e5d687a97a9eb2f31014eed892669c315db6/debuginfo ..
+--4172254--   .. build-id is valid
+==4172254== Successfully downloaded debug file for /nix/store/flc699amgffcjzyx8j0izmb3jkb5sadq-nix-main-2.32.4/lib/libnixmain.so.2.32.4
+--4172254-- Reading syms from /nix/store/j193mfi0f921y0kfs8vjc1znnr45ispv-glibc-2.40-66/lib/libnss_dns.so.2
+--4172254-- REDIR: 0x54fb550 (libc.so.6:__memcpy_chk_avx_unaligned_erms) redirected to 0x4929d00 (__memcpy_chk)
+--4172254-- REDIR: 0x54fe480 (libc.so.6:__strncasecmp_avx2) redirected to 0x49247d0 (strncasecmp)
+==4172254== Downloading debug info for /nix/store/rfm5m2l26lqkskcvxn5bm5xqh6c8wqr5-openssl-3.6.0/lib/libcrypto.so.3...
+--4172254--   Considering /home/ghpzin/.cache/debuginfod_client/d3df9aa0528dc9e0b44ac16d9d340c6995cd852b/debuginfo ..
+--4172254--   .. build-id is valid
+==4172254== Successfully downloaded debug file for /nix/store/rfm5m2l26lqkskcvxn5bm5xqh6c8wqr5-openssl-3.6.0/lib/libcrypto.so.3
+==4172254== Downloading debug info for /nix/store/rfm5m2l26lqkskcvxn5bm5xqh6c8wqr5-openssl-3.6.0/lib/libssl.so.3...
+--4172254--   Considering /home/ghpzin/.cache/debuginfod_client/2ca3867c6ded92c94f496c4f21da3b9da6d3fed0/debuginfo ..
+--4172254--   .. build-id is valid
+==4172254== Successfully downloaded debug file for /nix/store/rfm5m2l26lqkskcvxn5bm5xqh6c8wqr5-openssl-3.6.0/lib/libssl.so.3
+==4172254== Downloading debug info for /nix/store/0apq92vpf3f3kll8vl9nhjq1gaaffibk-curl-8.17.0/lib/libcurl.so.4.8.0...
+--4172254--   Considering /home/ghpzin/.cache/debuginfod_client/f946e6bc44a27692140f8ed614c1beffb8cad509/debuginfo ..
+--4172254--   .. build-id is valid
+==4172254== Successfully downloaded debug file for /nix/store/0apq92vpf3f3kll8vl9nhjq1gaaffibk-curl-8.17.0/lib/libcurl.so.4.8.0
+--4172254-- REDIR: 0x54294b0 (libc.so.6:posix_memalign) redirected to 0x4922230 (posix_memalign)
+--4172254-- REDIR: 0x53c1e00 (libc.so.6:unsetenv) redirected to 0x492abc0 (unsetenv)
+==4172254== Invalid free() / delete / delete[] / realloc()
+==4172254==    at 0x491DF20: operator delete(void*, unsigned long) (vg_replace_malloc.c:1184)
+==4172254==    by 0x53BE1FB: __cxa_finalize (cxa_finalize.c:97)
+==4172254==    by 0x4F49DE6: ??? (in /nix/store/m8rskj9i7ffp7ibm1v2jhijxmgms2pp0-libpqxx-7.10.1/lib/libpqxx-7.10.so)
+==4172254==    by 0x40D4101: _dl_call_fini (dl-call_fini.c:43)
+==4172254==    by 0x40D7569: _dl_fini (dl-fini.c:114)
+==4172254==    by 0x53BE790: __run_exit_handlers (exit.c:108)
+==4172254==    by 0x53BE85D: exit (exit.c:138)
+==4172254==    by 0x53A44CB: (below main) (libc_start_call_main.h:74)
+==4172254==  Address 0x9aebe20 is 0 bytes inside a block of size 17 free'd
+==4172254==    at 0x491DF20: operator delete(void*, unsigned long) (vg_replace_malloc.c:1184)
+==4172254==    by 0x53BE790: __run_exit_handlers (exit.c:108)
+==4172254==    by 0x53BE85D: exit (exit.c:138)
+==4172254==    by 0x53A44CB: (below main) (libc_start_call_main.h:74)
+==4172254==  Block was alloc'd at
+==4172254==    at 0x4919FBB: operator new(unsigned long) (vg_replace_malloc.c:488)
+==4172254==    by 0x4F75B4D: pqxx::internal::demangle_type_name[abi:cxx11](char const*) (in /nix/store/m8rskj9i7ffp7ibm1v2jhijxmgms2pp0-libpqxx-7.10.1/lib/libpqxx-7.10.so)
+==4172254==    by 0x402AF25: _GLOBAL__sub_I_hydra_queue_runner.cc (in /nix/var/nix/builds/nix-build-hydra-0-unstable-2025-11-06.drv-3/b/source/build/src/hydra-queue-runner/hydra-queue-runner)
+==4172254==    by 0x53A45F3: call_init (libc-start.c:145)
+==4172254==    by 0x53A45F3: __libc_start_main@@GLIBC_2.34 (libc-start.c:347)
+==4172254==    by 0x402BB44: (below main) (in /nix/var/nix/builds/nix-build-hydra-0-unstable-2025-11-06.drv-3/b/source/build/src/hydra-queue-runner/hydra-queue-runner)
+==4172254== 
+==4172254== 
+==4172254== HEAP SUMMARY:
+==4172254==     in use at exit: 10,128 bytes in 63 blocks
+==4172254==   total heap usage: 10,489 allocs, 10,430 frees, 1,058,176 bytes allocated
+==4172254== 
+==4172254== Searching for pointers to 63 not-freed blocks
+==4172254== Checked 20,460,056 bytes
+==4172254== 
+==4172254== LEAK SUMMARY:
+==4172254==    definitely lost: 228 bytes in 4 blocks
+==4172254==    indirectly lost: 0 bytes in 0 blocks
+==4172254==      possibly lost: 416 bytes in 1 blocks
+==4172254==    still reachable: 9,484 bytes in 58 blocks
+==4172254==         suppressed: 0 bytes in 0 blocks
+==4172254== Rerun with --leak-check=full to see details of leaked memory
+==4172254== 
+==4172254== ERROR SUMMARY: 4 errors from 1 contexts (suppressed: 0 from 0)
+==4172254== 
+==4172254== 4 errors in context 1 of 1:
+==4172254== Invalid free() / delete / delete[] / realloc()
+==4172254==    at 0x491DF20: operator delete(void*, unsigned long) (vg_replace_malloc.c:1184)
+==4172254==    by 0x53BE1FB: __cxa_finalize (cxa_finalize.c:97)
+==4172254==    by 0x4F49DE6: ??? (in /nix/store/m8rskj9i7ffp7ibm1v2jhijxmgms2pp0-libpqxx-7.10.1/lib/libpqxx-7.10.so)
+==4172254==    by 0x40D4101: _dl_call_fini (dl-call_fini.c:43)
+==4172254==    by 0x40D7569: _dl_fini (dl-fini.c:114)
+==4172254==    by 0x53BE790: __run_exit_handlers (exit.c:108)
+==4172254==    by 0x53BE85D: exit (exit.c:138)
+==4172254==    by 0x53A44CB: (below main) (libc_start_call_main.h:74)
+==4172254==  Address 0x9aebe20 is 0 bytes inside a block of size 17 free'd
+==4172254==    at 0x491DF20: operator delete(void*, unsigned long) (vg_replace_malloc.c:1184)
+==4172254==    by 0x53BE790: __run_exit_handlers (exit.c:108)
+==4172254==    by 0x53BE85D: exit (exit.c:138)
+==4172254==    by 0x53A44CB: (below main) (libc_start_call_main.h:74)
+==4172254==  Block was alloc'd at
+==4172254==    at 0x4919FBB: operator new(unsigned long) (vg_replace_malloc.c:488)
+==4172254==    by 0x4F75B4D: pqxx::internal::demangle_type_name[abi:cxx11](char const*) (in /nix/store/m8rskj9i7ffp7ibm1v2jhijxmgms2pp0-libpqxx-7.10.1/lib/libpqxx-7.10.so)
+==4172254==    by 0x402AF25: _GLOBAL__sub_I_hydra_queue_runner.cc (in /nix/var/nix/builds/nix-build-hydra-0-unstable-2025-11-06.drv-3/b/source/build/src/hydra-queue-runner/hydra-queue-runner)
+==4172254==    by 0x53A45F3: call_init (libc-start.c:145)
+==4172254==    by 0x53A45F3: __libc_start_main@@GLIBC_2.34 (libc-start.c:347)
+==4172254==    by 0x402BB44: (below main) (in /nix/var/nix/builds/nix-build-hydra-0-unstable-2025-11-06.drv-3/b/source/build/src/hydra-queue-runner/hydra-queue-runner)
+==4172254== 
+==4172254== ERROR SUMMARY: 4 errors from 1 contexts (suppressed: 0 from 0)
