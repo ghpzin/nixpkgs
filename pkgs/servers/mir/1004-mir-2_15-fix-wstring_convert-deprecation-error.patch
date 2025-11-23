@@ -1,0 +1,44 @@
+From e8d1a2255a48991f20889e5844b0d69f5f75d01f Mon Sep 17 00:00:00 2001
+From: Alan Griffiths <alan@octopull.co.uk>
+Date: Wed, 19 Feb 2025 10:24:55 +0000
+Subject: [PATCH] std::wstring_convert is deprecated, but there's no obvious
+ replacement. Yet
+
+Co-authored-by: ghpzin <ghpzin@gmail.com>
+---
+ examples/example-server-lib/decoration_provider.cpp | 3 +++
+ src/server/shell/decoration/renderer.cpp            | 5 +++++
+ 2 files changed, 8 insertions(+)
+
+diff --git a/examples/example-server-lib/decoration_provider.cpp b/examples/example-server-lib/decoration_provider.cpp
+index 30200c9f26..3473ae047a 100644
+--- a/examples/example-server-lib/decoration_provider.cpp
++++ b/examples/example-server-lib/decoration_provider.cpp
+@@ -59,7 +59,10 @@ struct Printer
+     void printhelp(BackgroundInfo const& region);
+ 
+ private:
++#pragma GCC diagnostic push
++#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+     std::wstring_convert<preferred_codecvt> converter;
++#pragma GCC diagnostic pop
+ 
+     bool working = false;
+     FT_Library lib;
+diff --git a/src/server/shell/decoration/renderer.cpp b/src/server/shell/decoration/renderer.cpp
+index de614b674f..67c54c4634 100644
+--- a/src/server/shell/decoration/renderer.cpp
++++ b/src/server/shell/decoration/renderer.cpp
+@@ -426,7 +426,12 @@ auto msd::Renderer::Text::Impl::font_path() -> std::string
+ 
+ auto msd::Renderer::Text::Impl::utf8_to_utf32(std::string const& text) -> std::u32string
+ {
++
++#pragma GCC diagnostic push
++#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+     std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> converter;
++#pragma GCC diagnostic pop
++
+     std::u32string utf32_text;
+     try {
+ 
