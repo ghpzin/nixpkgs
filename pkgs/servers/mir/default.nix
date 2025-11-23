@@ -71,6 +71,11 @@ in
       # when some code was moved into that file
       ./1003-mir-2_15-calloc-args-in-right-order.patch
 
+      # Fix build with gcc15
+      # Remove when version > 2.20.0
+      # https://github.com/canonical/mir/pull/3763 backported to 2.15
+      ./1004-mir-2_15-fix-wstring_convert-deprecation-error.patch
+
       # Drop gflags & glog dependencies
       # Remove when version > 2.16.4
       (fetchpatch {
