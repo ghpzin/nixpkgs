@@ -21,6 +21,12 @@ stdenv.mkDerivation rec {
       url = "https://src.fedoraproject.org/rpms/psacct/raw/rawhide/f/psacct-6.6.4-sprintf-buffer-overflow.patch";
       hash = "sha256-l74tLIuhpXj+dIA7uAY9L0qMjQ2SbDdc+vjHMyVouFc=";
     })
+    # Fix build with gcc15
+    (fetchpatch2 {
+      name = "acct-fix-incompatible-pointer-types.patch";
+      url = "https://src.fedoraproject.org/rpms/psacct/raw/9f8c92eb28b0124652848b778438c23052f07679/f/f42-fix-ftbfs.patch";
+      hash = "sha256-y4n9jOJWNjm+nCM6OO7RQSrPrBYe/gre4lAnLMMvju8=";
+    })
   ];
 
   meta = {
