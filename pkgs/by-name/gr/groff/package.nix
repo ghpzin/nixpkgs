@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchurl,
+  fetchpatch,
   perl,
   enableGhostscript ? false,
   ghostscript,
@@ -33,6 +34,16 @@ stdenv.mkDerivation rec {
     url = "mirror://gnu/groff/${pname}-${version}.tar.gz";
     hash = "sha256-a5dX9ZK3UYtJAutq9+VFcL3Mujeocf3bLTCuOGNRHBM=";
   };
+
+  patches = lib.optionals (stdenv.hostPlatform.isMusl) [
+    # Fix build for musl with gcc15
+    ./groff-fix-underspecified-getenv-prototype.patch
+    # (fetchpatch {
+    #   name = "groff-fix-underspecified-getenv-prototype.patch";
+    #   url = "https://git.savannah.gnu.org/cgit/groff.git/patch/?id=e49b934b77a76443005f92a737dae7370b50e5f7";
+    #   hash = "";
+    # })
+  ];
 
   outputs = [
     "out"
