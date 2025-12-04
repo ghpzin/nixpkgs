@@ -380,6 +380,21 @@ stdenv.mkDerivation {
       }
     }
 
+    patch -p1 -d llvm-project/llvm -i ${
+      fetchpatch {
+        url = "https://github.com/llvm/llvm-project/commit/7e44305041d96b064c197216b931ae3917a34ac1.patch";
+        stripLen = 1;
+        hash = "sha256-1htuzsaPHbYgravGc1vrR8sqpQ/NSQ8PUZeAU8ucCFk=";
+      }
+    }
+    patch -p1 -d llvm-project/llvm -i ${
+      fetchpatch {
+        url = "https://github.com/llvm/llvm-project/commit/7abf44069aec61eee147ca67a6333fc34583b524.patch";
+        stripLen = 1;
+        hash = "sha256-OAjR1tLXgmFmTUG4EZa2nlBD+C74XTZ+S2TMZmsQ9WA=";
+      }
+    }
+
     ${lib.optionalString stdenv.hostPlatform.isLinux ''
       substituteInPlace llvm-project/clang/lib/Driver/ToolChains/Linux.cpp \
         --replace-fail 'LibDir = "lib";' 'LibDir = "${glibc}/lib";' \
