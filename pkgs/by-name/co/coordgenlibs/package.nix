@@ -47,8 +47,22 @@ stdenv.mkDerivation (finalAttrs: {
 
   doCheck = true;
 
-  # Fix the build with Clang 20.
-  env.NIX_CFLAGS_COMPILE = lib.optionalString stdenv.cc.isClang "-Wno-error=deprecated-literal-operator";
+  env.NIX_CFLAGS_COMPILE = toString (
+    [
+      "-v"
+      # "-Wall"
+      # "-fsanitize=address"
+      # "-O1"
+    ]
+    ++ lib.optional stdenv.cc.isGNU [
+      # Fix build with gcc15
+      "-Wno-error=restrict"
+    ]
+    ++ lib.optional stdenv.cc.isClang [
+      # Fix the build with Clang 20.
+      "-Wno-error=deprecated-literal-operator"
+    ]
+  );
 
   meta = {
     description = "Schrodinger-developed 2D Coordinate Generation";
