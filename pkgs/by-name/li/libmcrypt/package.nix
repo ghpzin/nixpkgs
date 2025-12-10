@@ -35,6 +35,8 @@ stdenv.mkDerivation (finalAttrs: {
     ];
 
   env.NIX_CFLAGS_COMPILE = toString [
+    # Fix build with gcc15
+    "-std=gnu17"
     "-Wno-implicit-function-declaration"
     "-Wno-implicit-int"
   ];
