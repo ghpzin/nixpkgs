@@ -2,6 +2,7 @@
   stdenv,
   lib,
   fetchFromGitHub,
+  fetchpatch,
   replaceVars,
   cmake,
   ninja,
@@ -32,6 +33,14 @@ stdenv.mkDerivation (finalAttrs: {
   patches = [
     (replaceVars ./gtest.patch {
       GTEST_INCLUDE_DIRS = "${lib.getDev gtest}/include";
+    })
+
+    # Fix build with gcc15
+    # https://github.com/google/libultrahdr/pull/363
+    (fetchpatch {
+      name = "libultrahdr-add-missing-cstdint-gcc15.patch";
+      url = "https://github.com/google/libultrahdr/commit/5fa99b5271a3c80a13c78062d7adc6310222dd8e.patch";
+      hash = "sha256-o6lbDOdx+ZrCy/Iq02WjM9Tas8C5P/FMwUtXMUCoZGY=";
     })
   ];
 
