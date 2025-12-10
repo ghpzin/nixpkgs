@@ -73,7 +73,7 @@ stdenv.mkDerivation rec {
     '';
 
   # Workaround to fix the static build on macOS.
-  env.NIX_CFLAGS_COMPILE = "-Wno-implicit-function-declaration";
+  env.NIX_CFLAGS_COMPILE = "-std=gnu17 -Wno-implicit-function-declaration";
 
   doCheck = true;
 
