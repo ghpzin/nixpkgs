@@ -15,6 +15,9 @@ stdenv.mkDerivation rec {
 
   dontDisableStatic = true;
 
+  # Fix build with gcc15
+  env.NIX_CFLAGS_COMPILE = "-std=gnu17";
+
   patches = [ ./autotools-define-conflict-debian-fix.patch ];
 
   meta = {
