@@ -33,6 +33,14 @@ stdenv.mkDerivation rec {
       url = "https://github.com/airspy/airspyone_host/commit/f467acd587617640741ecbfade819d10ecd032c2.patch";
       hash = "sha256-qfJrxM1hq7NScxN++d9IH+fwFfXf/YwZZUDDOVbwIJk=";
     })
+
+    # Fix build with gcc15
+    # https://www.github.com/airspy/airspyone_host/pull/98
+    (fetchpatch {
+      name = "airspy-fix-bool-conflict-c23.patch";
+      url = "https://github.com/airspy/airspyone_host/commit/bd15be38e91ebaa3e0bebb1e320255bde4ccf059.patch";
+      hash = "sha256-D0EdmxvL4VCBl8DA2bReyqEJZOVQgHxrqnp+myFm0jE=";
+    })
   ];
 
   postPatch = ''
