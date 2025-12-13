@@ -37,21 +37,9 @@ buildPythonPackage rec {
     numpy
   ];
 
-  env =
-    # Fallback to generic architectures when necessary:
-    # https://github.com/explosion/cython-blis?tab=readme-ov-file#building-blis-for-alternative-architectures
-    lib.optionalAttrs
-      (
-        # error: [Errno 2] No such file or directory: '/build/source/blis/_src/make/linux-cortexa57.jsonl'
-        (stdenv.hostPlatform.isLinux && stdenv.hostPlatform.isAarch64)
-
-        # clang: error: unknown argument '-mavx512pf'; did you mean '-mavx512f'?
-        # Patching blis/_src/config/knl/make_defs.mk to remove the said flag does not work
-        || (stdenv.hostPlatform.isDarwin && stdenv.hostPlatform.isx86_64)
-      )
-      {
-        BLIS_ARCH = "generic";
-      };
+  # Fix build with gcc15
+  # https://github.com/explosion/cython-blis/issues/127
+  env.BLIS_ARCH = "generic";
 
   dependencies = [ numpy ];
 
