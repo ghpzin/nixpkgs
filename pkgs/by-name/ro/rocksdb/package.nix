@@ -89,6 +89,7 @@ stdenv.mkDerivation (finalAttrs: {
       sed -e '1i #include <cstdint>' -i table/block_based/data_block_hash_index.h
       sed -e '1i #include <cstdint>' -i util/string_util.h
       sed -e '1i #include <cstdint>' -i include/rocksdb/utilities/checkpoint.h
+      sed -e '1i #include <cstdint>' -i include/rocksdb/sst_partitioner.h
     ''
     + lib.optionalString (lib.versionOlder finalAttrs.version "10.4.2") ''
       # Fix gcc-15 build failures due to missing <cstdint>
@@ -102,7 +103,11 @@ stdenv.mkDerivation (finalAttrs: {
       # Fix gcc-13 build failures due to missing <cstdint> and
       # <system_error> includes, fixed upstyream sice 7.x
       sed -e '1i #include <system_error>' -i third-party/folly/folly/synchronization/detail/ProxyLockable-inl.h
-    '';
+    ''
+    + lib.optionalString (lib.versionOlder finalAttrs.version "10") ''
+      sed -e '1i #include <cstdint>' -i db/blob/blob_file_meta.h
+    ''
+    ;
 
   preInstall = ''
     mkdir -p $tools/bin
