@@ -15286,6 +15286,8 @@ with self;
       # Fix incompatible function pointer conversion (assigning `GdkNativeWindow` to `guint32`).
       ../development/perl-modules/Gtk2-fix-incompatible-pointer-conversion.patch
     ];
+    # Fix build with gcc15
+    env.NIX_CFLAGS_COMPILE = "-std=gnu17";
     buildInputs = [ pkgs.gtk2 ];
     # https://rt.cpan.org/Public/Bug/Display.html?id=130742
     # doCheck = !stdenv.hostPlatform.isDarwin;
