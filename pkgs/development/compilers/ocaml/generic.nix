@@ -92,6 +92,14 @@ stdenv.mkDerivation (
 
     strictDeps = true;
 
+    # Fix build with gcc15
+    # https://github.com/ocaml/ocaml/issues/14031
+    env =
+      lib.optionalAttrs (lib.versionOlder version "4.14" || lib.versions.majorMinor version == "5.0")
+        {
+          NIX_CFLAGS_COMPILE = "-std=gnu17";
+        };
+
     prefixKey = "-prefix ";
     configureFlags =
       let
