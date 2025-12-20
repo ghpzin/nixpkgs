@@ -156,8 +156,10 @@
   xvinfo,
   xwininfo,
   xwud,
+  pkgsMusl,
 }:
-
+let callPackage = pkgsMusl.callPackage;
+in
 self: with self; {
 
   inherit

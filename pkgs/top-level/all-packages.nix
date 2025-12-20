@@ -167,6 +167,8 @@ with pkgs;
 
   ### BUILD SUPPORT
 
+  xorg-server = pkgsMusl.callPackage ../by-name/xo/xorg-server/package.nix {};
+
   __flattenIncludeHackHook = callPackage ../build-support/setup-hooks/flatten-include-hack { };
 
   arrayUtilities =
