@@ -427,6 +427,14 @@ stdenv.mkDerivation {
           hash = "sha256-1htuzsaPHbYgravGc1vrR8sqpQ/NSQ8PUZeAU8ucCFk=";
         }
       }
+      patch -p1 -d llvm-project/lldb -i ${
+        fetchpatch {
+          name = "lldb-AddressableBits-add-cstdint.patch";
+          url = "https://github.com/swiftlang/llvm-project/commit/bb59f04e7e75dcbe39f1bf952304a157f0035314.patch";
+          stripLen = 1;
+          hash = "sha256-+CcmZRxCaozFe1Kuf2HX+kGKuh/PDuoFBEFA/t7tL9A=";
+        }
+      }
       patch -p1 -d llvm-project/llvm -i ${./patches/llvm-X86MCTargetDesc-add-cstdint.patch}
       patch -p1 -d swift -i ${
         fetchpatch {

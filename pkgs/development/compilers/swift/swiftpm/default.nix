@@ -275,6 +275,10 @@ let
       # (and only Swift XCTest is open source).
       substituteInPlace perftests/CMakeLists.txt \
         --replace-fail 'add_subdirectory(Xcode/' '#add_subdirectory(Xcode/'
+
+      # Fix build with gcc15
+      # https://github.com/swiftlang/swift-llbuild/issues/1012
+      sed -e '1i #include <cstdint>' -i utils/unittest/googletest/src/gtest-death-test.cc
     '';
 
     cmakeFlags = [
