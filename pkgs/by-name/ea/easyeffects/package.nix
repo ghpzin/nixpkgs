@@ -11,7 +11,7 @@
   gsl,
   intltool,
   kdePackages,
-  ladspaH,
+  ladspa-header,
   libbs2b,
   libebur128,
   libmysofa,
@@ -95,7 +95,7 @@ stdenv.mkDerivation (finalAttrs: {
     kiconthemes
     kirigami
     kirigami-addons
-    ladspaH
+    ladspa-header
     qqc2-desktop-style
     libbs2b
     libebur128
