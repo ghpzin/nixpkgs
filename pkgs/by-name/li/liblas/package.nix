@@ -3,7 +3,7 @@
   stdenv,
   fetchFromGitHub,
   fetchpatch,
-  boost,
+  boost188,
   cmake,
   libgeotiff,
   libtiff,
@@ -41,7 +41,7 @@ stdenv.mkDerivation (finalAttrs: {
   nativeBuildInputs = [ cmake ] ++ lib.optional stdenv.hostPlatform.isDarwin fixDarwinDylibNames;
 
   buildInputs = [
-    boost
+    boost188
     libgeotiff
     libtiff
     # libLAS is currently not compatible with LASzip 3,

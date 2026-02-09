@@ -119,6 +119,12 @@ freecad-utils.makeCustomizable (
     postPatch = ''
       substituteInPlace src/Mod/Fem/femmesh/gmshtools.py \
         --replace-fail 'self.gmsh_bin = "gmsh"' 'self.gmsh_bin = "${lib.getExe gmsh}"'
+
+      # Fix build with boost 1.89+
+      # https://github.com/FreeCAD/FreeCAD/pull/24098
+      substituteInPlace cMake/FreeCAD_Helpers/SetupBoost.cmake \
+        --replace-fail 'set (BOOST_COMPONENTS filesystem program_options regex system thread date_time)' \
+        'set (BOOST_COMPONENTS filesystem program_options regex thread date_time)'
     '';
 
     cmakeFlags = [

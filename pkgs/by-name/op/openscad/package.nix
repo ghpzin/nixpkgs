@@ -7,7 +7,7 @@
   bison,
   flex,
   eigen,
-  boost,
+  boost188,
   libGLU,
   libGL,
   glew,
@@ -120,7 +120,7 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     eigen
-    boost
+    boost188
     glew
     opencsg
     cgal_5

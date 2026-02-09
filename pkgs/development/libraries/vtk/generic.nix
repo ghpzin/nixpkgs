@@ -18,7 +18,7 @@
   python3Packages,
   catalyst,
   cli11,
-  boost,
+  boost188,
   eigen,
   verdict,
   double-conversion,
@@ -167,7 +167,7 @@ stdenv.mkDerivation (finalAttrs: {
   # propagated by vtk-config.cmake
   propagatedBuildInputs = [
     eigen
-    boost
+    boost188
     verdict
     double-conversion
     freetype
