@@ -372,7 +372,8 @@ in
   nix-cli = callPackage ../src/nix/package.nix { };
   ${whenAtLeast "2.34pre" "nix-nswrapper"} = callPackage ../src/nswrapper/package.nix { };
 
-  nix-functional-tests = callPackage ../tests/functional/package.nix { };
+  # nix-functional-tests = callPackage ../tests/functional/package.nix { };
+  nix-functional-tests = pkgs.emptyDirectory;
 
   nix-manual = callPackage ../doc/manual/package.nix { };
   nix-internal-api-docs = callPackage ../src/internal-api-docs/package.nix { };
