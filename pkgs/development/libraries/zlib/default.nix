@@ -40,17 +40,14 @@ stdenv.mkDerivation (finalAttrs: {
       hash = "sha256-uzKaCizQJ00FUZ1hxmfAYuBpkNcuEl7i36jeZPARnRY=";
     };
 
-  postPatch =
-    lib.optionalString stdenv.hostPlatform.isDarwin ''
-      substituteInPlace configure \
-        --replace '/usr/bin/libtool' '${stdenv.cc.targetPrefix}ar' \
-        --replace 'AR="libtool"' 'AR="${stdenv.cc.targetPrefix}ar"' \
-        --replace 'ARFLAGS="-o"' 'ARFLAGS="-r"'
-    ''
-    + lib.optionalString stdenv.hostPlatform.isCygwin ''
-      substituteInPlace win32/zlib.def \
-        --replace-fail 'gzopen_w' ""
-    '';
+  postPatch = ''
+    substituteInPlace configure \
+      --replace-fail '/usr/bin/libtool' '${stdenv.cc.targetPrefix}ar' \
+      --replace-fail 'AR="libtool"' 'AR="${stdenv.cc.targetPrefix}ar"' \
+      --replace-fail 'ARFLAGS="-o"' 'ARFLAGS="-r"'
+    substituteInPlace win32/zlib.def \
+      --replace-fail 'gzopen_w' ""
+  '';
 
   strictDeps = true;
   outputs = [
