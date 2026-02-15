@@ -8,6 +8,7 @@
   zlib-ng,
   makeScopeWithSplicing',
   generateSplicesForMkScope,
+  fetchpatch,
 }:
 
 let
@@ -46,9 +47,19 @@ let
       libzip =
         (libzip.override {
           # Known good version: 2.2.4
-          zlib = zlib-ng.override {
-            withZlibCompat = true;
-          };
+          zlib =
+            (zlib-ng.override {
+              withZlibCompat = true;
+            }).overrideAttrs
+              (old: {
+                patches = (old.patches or [ ]) ++ [
+                  (fetchpatch {
+                    url = "https://github.com/zlib-ng/zlib-ng/commit/cd1722e5b7260c9400c37e9b149ff841a483aa3e.diff";
+                    revert = true;
+                    hash = "";
+                  })
+                ];
+              });
         }).overrideAttrs
           (old: {
             patches = (old.patches or [ ]) ++ [
