@@ -1,15 +1,14 @@
 {
   lib,
   stdenv,
-  fetchurl,
+  ladspa-sdk,
 }:
 stdenv.mkDerivation (finalAttrs: {
-  pname = "ladspa.h";
-  version = "1.17";
-  src = fetchurl {
-    url = "https://www.ladspa.org/download/ladspa_sdk_${finalAttrs.version}.tgz";
-    hash = "sha256-J9JPJ55Lgb0X7L3MOOTEKZG7OIgmwLIABnzg61nT2ls=";
-  };
+  pname = "ladspa-header";
+
+  inherit (ladspa-sdk) version src;
+
+  dontBuild = true;
 
   installPhase = ''
     mkdir -p $out/include
@@ -17,14 +16,12 @@ stdenv.mkDerivation (finalAttrs: {
   '';
 
   meta = {
+    inherit (ladspa-sdk.meta) homepage license maintainers;
     description = "LADSPA format audio plugins header file";
     longDescription = ''
       The ladspa.h API header file from the LADSPA SDK.
       For the full SDK, use the ladspa-sdk package.
     '';
-    homepage = "http://www.ladspa.org/ladspa_sdk/overview.html";
-    license = lib.licenses.lgpl2;
-    maintainers = [ lib.maintainers.magnetophon ];
     platforms = lib.platforms.all;
   };
 })
