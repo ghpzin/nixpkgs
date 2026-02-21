@@ -85,6 +85,16 @@ python3Packages.buildPythonApplication rec {
     })
     ./ffmpeg.patch
     ./ai-edge-litert.patch
+    (fetchpatch {
+      # peewee-migrate 0.14.x compat
+      url = "https://github.com/blakeblackshear/frigate/commit/dde02cadb2168c44e9eb395ddfbb7b169096bd15.patch";
+      excludes = [
+        "docker/main/requirements-wheels.txt"
+        "migrations/031_create_trigger_table.py"
+        "migrations/032_add_password_changed_at.py"
+      ];
+      hash = "sha256-RrmwjE4SHJIUOYfqcCtMy9Pht7UXhHcoAZlFQv9aQFw=";
+    })
   ];
 
   postPatch = ''
