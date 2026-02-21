@@ -2,6 +2,7 @@
   lib,
   buildPythonPackage,
   fetchFromGitHub,
+  procps,
   setuptools,
   pytest-mock,
   pytestCheckHook,
@@ -18,6 +19,13 @@ buildPythonPackage (finalAttrs: {
     tag = finalAttrs.version;
     hash = "sha256-xeBo3Ok+XPrHN4nQd7M8/11leSV/8z1f7Sj33+HFVtQ=";
   };
+
+  postPatch = ''
+    substituteInPlace src/shellingham/posix/ps.py \
+      --replace-fail \
+        'cmd = ["ps",' \
+        'cmd = ["${lib.getExe' procps "ps"}",'
+  '';
 
   build-system = [ setuptools ];
 
