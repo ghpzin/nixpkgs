@@ -3601,6 +3601,12 @@
     githubId = 37768199;
     name = "Christian Bergschneider";
   };
+  blokyk = {
+    email = "pro@zoeee.net";
+    github = "blokyk";
+    githubId = 32983140;
+    name = "Zoë Courvoisier";
+  };
   bloominstrong = {
     email = "github@mail.bloominstrong.net";
     github = "bloominstrong";
@@ -21111,12 +21117,6 @@
     email = "plebhash@proton.me";
     github = "plebhash";
     githubId = 147345153;
-  };
-  pleshevskiy = {
-    email = "dmitriy@pleshevski.ru";
-    github = "pleshevskiy";
-    githubId = 7839004;
-    name = "Dmitriy Pleshevskiy";
   };
   pluiedev = {
     email = "hi@pluie.me";
