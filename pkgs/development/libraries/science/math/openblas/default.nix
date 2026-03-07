@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  fetchpatch,
   perl,
   which,
   # Most packages depending on openblas expect integer width to match
@@ -193,6 +194,16 @@ stdenv.mkDerivation rec {
     rev = "v${version}";
     hash = "sha256-YBR81GOLnTsc0g1SZL+j31/OFucJrBRFqtOTV8lcy8U=";
   };
+
+  patches = [
+    # Fix build without multithreading
+    # https://github.com/OpenMathLib/OpenBLAS/issues/5607
+    # https://github.com/OpenMathLib/OpenBLAS/pull/5615
+    (fetchpatch  {
+      url = "https://github.com/OpenMathLib/OpenBLAS/commit/14594773a0c06b1fb40208dcdbd3aad4c39d845d.patch";
+      hash = "sha256-vmMSA7+5tdJT5IuvtTmush583jOOqa0rUCB0sb/luDM=";
+    })
+  ];
 
   inherit blas64;
 
