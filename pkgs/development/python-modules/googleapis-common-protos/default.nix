@@ -3,7 +3,7 @@
   buildPythonPackage,
   fetchFromGitHub,
   grpc,
-  protobuf,
+  protobuf6,
   setuptools,
   nix-update-script,
 }:
@@ -26,7 +26,7 @@ buildPythonPackage rec {
 
   dependencies = [
     grpc
-    protobuf
+    protobuf6
   ];
 
   passthru.updateScript = nix-update-script {
