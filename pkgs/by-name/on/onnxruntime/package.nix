@@ -21,7 +21,7 @@
   removeReferencesTo,
   re2,
   zlib,
-  protobuf,
+  protobuf_33,
   microsoft-gsl,
   darwinMinVersionHook,
   pythonSupport ? true,
@@ -35,6 +35,7 @@
 
 let
   stdenv = throw "Use effectiveStdenv instead";
+  protobuf = protobuf_33;
   effectiveStdenv = if cudaSupport then cudaPackages.backendStdenv else inputs.stdenv;
   inherit (cudaPackages) cuda_nvcc;
 
