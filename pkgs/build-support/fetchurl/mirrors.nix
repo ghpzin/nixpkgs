@@ -117,7 +117,9 @@
 
   # See https://download.kde.org/ls-lR.mirrorlist
   kde = [
-    "https://download.kde.org/"
+    # "https://download.kde.org/"
+    "https://ftp.funet.fi/pub/mirrors/ftp.kde.org/pub/kde/"
+    # "https://paducahix.mm.fcix.net"
   ];
 
   # kernel.org's /pub (/pub/{linux,software}) tree
@@ -159,7 +161,8 @@
 
   # Qt
   qt = [
-    "https://download.qt.io/"
+    # "https://download.qt.io/"
+    "https://qt-mirror.dannhauer.de/"
   ];
 
   # Sage mirrors (https://www.sagemath.org/mirrors.html)
