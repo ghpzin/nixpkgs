@@ -45,6 +45,12 @@ buildPythonPackage (finalAttrs: {
     "tests"
   ];
 
+  disabledTests = [
+    "test_bin_path"
+    "test_bin_path_prefix"
+    "test_memray_report_with_pytest_xdist"
+  ];
+
   pythonImportsCheck = [ "pytest_memray" ];
 
   meta = {

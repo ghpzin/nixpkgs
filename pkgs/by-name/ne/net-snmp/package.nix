@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchurl,
+  fetchpatch,
   file,
   openssl,
   perl,
@@ -28,6 +29,15 @@ stdenv.mkDerivation (finalAttrs: {
     url = "mirror://sourceforge/net-snmp/net-snmp-${finalAttrs.version}.tar.gz";
     hash = "sha256-FnB3GfgzGEpLcoNdrDWa4YgSOwa15CgXwAeQ19wThL8=";
   };
+
+  patches = [
+    # https://github.com/net-snmp/net-snmp/issues/434
+    (fetchpatch {
+      name = "net-snmp-makefile-trap-needs-agent.patch";
+      url = "https://salsa.debian.org/debian/net-snmp/-/raw/27ec8dbccda7b9b2f78f38445b5735f0398384f3/debian/patches/makefile_trap_needs_agent";
+      hash = "sha256-jcDvYIT174BvpFjzyanMLLOCHOuEq1Gx12l0HtTx0pM=";
+    })
+  ];
 
   outputs = [
     "bin"

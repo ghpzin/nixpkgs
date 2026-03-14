@@ -17,7 +17,6 @@
   expat,
   ffmpeg,
   gcc-unwrapped,
-  glew,
   glfw,
   glib,
   glib-networking,
@@ -103,7 +102,6 @@ clangStdenv.mkDerivation (finalAttrs: {
     expat
     ffmpeg
     gcc-unwrapped
-    glew
     glfw
     glib
     glib-networking
@@ -208,11 +206,6 @@ clangStdenv.mkDerivation (finalAttrs: {
 
   preFixup = ''
     gappsWrapperArgs+=(
-      --prefix LD_LIBRARY_PATH : "$out/lib:${
-        lib.makeLibraryPath [
-          glew
-        ]
-      }"
       --set WEBKIT_DISABLE_COMPOSITING_MODE 1
       ${lib.optionalString withNvidiaGLWorkaround ''
         --set __GLX_VENDOR_LIBRARY_NAME mesa

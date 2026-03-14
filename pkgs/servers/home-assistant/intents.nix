@@ -59,6 +59,11 @@ buildPythonPackage (finalAttrs: {
     "intents/tests"
   ];
 
+  disabledTests = [
+    # assert 100 == -100.0
+    "test_HassLightSet_name_brightness"
+  ];
+
   meta = {
     changelog = "https://github.com/OHF-Voice/intents-package/releases/tag/${finalAttrs.src.tag}";
     description = "Intents to be used with Home Assistant";

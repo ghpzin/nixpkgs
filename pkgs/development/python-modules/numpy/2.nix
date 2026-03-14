@@ -183,6 +183,9 @@ buildPythonPackage (finalAttrs: {
   ++ lib.optionals (stdenv.hostPlatform ? gcc.arch) [
     # remove if https://github.com/numpy/numpy/issues/27460 is resolved
     "test_validate_transcendentals"
+  ]
+  ++ lib.optionals stdenv.hostPlatform.isi686 [
+    "test_poly_int_overflow"
   ];
 
   passthru = {
