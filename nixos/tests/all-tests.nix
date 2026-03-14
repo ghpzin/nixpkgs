@@ -645,6 +645,7 @@ in
     inherit runTest;
     forgejoPackage = pkgs.forgejo-lts;
   };
+  freecad = runTest ./freecad.nix;
   freenet = runTest ./freenet.nix;
   freescout = import ./freescout {
     inherit runTest;
