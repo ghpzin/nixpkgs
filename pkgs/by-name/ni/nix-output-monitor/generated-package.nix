@@ -35,13 +35,16 @@
   typed-process,
   unix,
   word8,
+  fetchFromGitHub,
 }:
 mkDerivation {
   pname = "nix-output-monitor";
   version = "2.1.8";
-  src = fetchzip {
-    url = "https://code.maralorn.de/maralorn/nix-output-monitor/archive/v2.1.8.tar.gz";
-    sha256 = "09zpz9dbllaqngkg6hz0vl4sx3kbvlp4cdk6lqa0kgszrwsdwl9r";
+  src = fetchFromGitHub {
+    owner = "maralorn";
+    repo = "nix-output-monitor";
+    rev = "2e5180152e621ad7e0c0b66ccaa81c82ceab7f2b";
+    hash = "sha256-DARjZPYhim9AGSdDsNL2GUfITCG+QSI+jaYMOYooRmU=";
   };
   isLibrary = true;
   isExecutable = true;

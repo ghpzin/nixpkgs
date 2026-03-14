@@ -114,7 +114,8 @@
 
   # See https://download.kde.org/ls-lR.mirrorlist
   kde = [
-    "https://download.kde.org/"
+    # "https://download.kde.org/"
+    "https://ftp.funet.fi/pub/mirrors/ftp.kde.org/pub/kde/"
   ];
 
   # kernel.org's /pub (/pub/{linux,software}) tree
