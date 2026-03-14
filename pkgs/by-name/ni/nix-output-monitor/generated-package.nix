@@ -40,8 +40,8 @@ mkDerivation {
   pname = "nix-output-monitor";
   version = "2.2.0";
   src = fetchzip {
-    url = "https://code.maralorn.de/maralorn/nix-output-monitor/archive/v2.2.0.tar.gz";
-    sha256 = "14qlawcwi4zq586rq75msxh19nkwh3zigzl41g7gdj7fzg030rnl";
+    url = "https://code.maralorn.de/maralorn/nix-output-monitor/archive/b568a2584ed3619a6ebe41a2910e2bfc674bf836.tar.gz";
+    hash = "sha256-t/OKt1G1UnHTRRtNuJ/yC1oOV4Fn39HkNsKzyd3DlYQ=";
   };
   postUnpack = "sourceRoot+=/nix-output-monitor; echo source root reset to $sourceRoot";
   isLibrary = true;

@@ -103,15 +103,15 @@ stdenv.mkDerivation (
   in
   {
     pname = "neovim-unwrapped";
-    version = "0.12.5";
+    version = "0.13.0";
 
     __structuredAttrs = true;
 
     src = fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      tag = "v${finalAttrs.version}";
-      hash = "sha256-dpu2kncpm+2k+XR7qOEi4KeEy9a1E6X7kjf3s4AbcSo=";
+      rev = "80e9708afa2a4e46967e5961dfc6a49fea84a118";
+      hash = "sha256-r5mIKMwGKUI+8WqNY5aYNiXj6rw1pgAqZObKvZyOM/U=";
     };
 
     strictDeps = true;
@@ -263,6 +263,10 @@ stdenv.mkDerivation (
     '';
 
     separateDebugInfo = true;
+
+    postInstall = ''
+      mv $out/share/applications/org.neovim.nvim.desktop $out/share/applications/nvim.desktop
+    '';
 
     nativeInstallCheckInputs = [
       versionCheckHook
