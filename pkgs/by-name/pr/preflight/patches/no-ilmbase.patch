@@ -1,0 +1,53 @@
+From 03167f90e6dafb71754333308dfb70488574992f Mon Sep 17 00:00:00 2001
+From: Jasper Chan <jasperchan515@gmail.com>
+Date: Wed, 20 May 2026 17:32:51 -0700
+Subject: [PATCH] IlmBase::Half is not needed
+
+https://github.com/prusa3d/PrusaSlicer/pull/14207
+---
+ cmake/modules/FindOpenVDB.cmake | 29 -----------------------------
+ 1 file changed, 29 deletions(-)
+
+diff --git a/cmake/modules/FindOpenVDB.cmake b/cmake/modules/FindOpenVDB.cmake
+index 0720e7f..229a524 100644
+--- a/cmake/modules/FindOpenVDB.cmake
++++ b/cmake/modules/FindOpenVDB.cmake
+@@ -347,35 +347,6 @@ macro(just_fail msg)
+   return()
+ endmacro()
+ 
+-find_package(Imath QUIET CONFIG)
+-if(TARGET Imath::Imath)
+-  message(STATUS "Found Imath (OpenEXR 3.x)")
+-  # Create IlmBase::Half alias for backward compatibility
+-  if(NOT TARGET IlmBase::Half)
+-    add_library(IlmBase::Half ALIAS Imath::Imath)
+-  endif()
+-else()
+-  # Fall back to IlmBase (OpenEXR 2.x)
+-  find_package(IlmBase QUIET)
+-  if(NOT IlmBase_FOUND)
+-    pkg_check_modules(IlmBase QUIET IlmBase)
+-  endif()
+-  if (IlmBase_FOUND AND NOT TARGET IlmBase::Half)
+-    message(STATUS "Falling back to IlmBase found by pkg-config...")
+-
+-    find_library(IlmHalf_LIBRARY NAMES Half)
+-    if(IlmHalf_LIBRARY-NOTFOUND OR NOT IlmBase_INCLUDE_DIRS)
+-      just_fail("IlmBase::Half can not be found!")
+-    endif()
+-    
+-    add_library(IlmBase::Half UNKNOWN IMPORTED)
+-    set_target_properties(IlmBase::Half PROPERTIES
+-      IMPORTED_LOCATION "${IlmHalf_LIBRARY}"
+-      INTERFACE_INCLUDE_DIRECTORIES "${IlmBase_INCLUDE_DIRS}")
+-  elseif(NOT IlmBase_FOUND)
+-    just_fail("IlmBase::Half can not be found!")
+-  endif()
+-endif()
+ find_package(TBB ${_quiet} ${_required} COMPONENTS tbb)
+ find_package(ZLIB ${_quiet} ${_required})
+ find_package(Boost ${_quiet} ${_required} COMPONENTS iostreams system )
+-- 
+2.53.0
+
