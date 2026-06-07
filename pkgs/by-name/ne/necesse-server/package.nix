@@ -1,23 +1,40 @@
 {
-  fetchzip,
   jre,
   lib,
   stdenvNoCC,
+  unzip,
+  curl,
+  cacert,
+  htmlq,
+  runCommand,
 }:
 
 let
-  version = "1.2.0-22728942";
+  version = "1.2.0-23522718";
   urlVersion = lib.replaceStrings [ "." ] [ "-" ] version;
-
+  platform = "linux64";
+  pname = "necesse-server";
 in
 stdenvNoCC.mkDerivation {
-  pname = "necesse-server";
-  inherit version;
-
-  src = fetchzip {
-    url = "https://necessegame.com/content/server/${urlVersion}/necesse-server-linux64-${urlVersion}.zip";
-    hash = "sha256-kSBql3oHG368DczSM7FkWeAZcfTrNP1x31LX7HRrgTE=";
-  };
+  inherit pname version;
+  src =
+    runCommand "${pname}-${platform}-${urlVersion}.zip"
+      {
+        outputHashAlgo = "sha256";
+        outputHash = "sha256-oW57bbmgg99Dmo8nsrIaeWqHNgDjyBOlbGCz+yQCcBU=";
+        outputHashMode = "flat";
+        nativeBuildInputs = [ curl ];
+        SSL_CERT_FILE = "${cacert}/etc/ssl/certs/ca-bundle.crt";
+        impureEnvVars = lib.fetchers.proxyImpureEnvVars;
+      }
+      ''
+        html=$(curl --silent --url 'https://necessegame.com/server')
+        url="$(echo "$html" | ${lib.getExe htmlq} 'a[href*="${pname}-${platform}-${urlVersion}"]' --attribute href)"
+        echo "url=$url"
+        curl --progress-bar --output $out --url "$url"
+      '';
+  nativeBuildInputs = [ unzip ];
+  sourceRoot = "${pname}-${urlVersion}";
 
   # removing packaged jre since we use our own
   postUnpack = ''
