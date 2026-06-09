@@ -13,7 +13,7 @@
   curl,
   dbus,
   draco,
-  eigen,
+  eigen_5,
   expat,
   ffmpeg,
   gcc-unwrapped,
@@ -36,38 +36,30 @@
   systemd,
   onetbb,
   webkitgtk_4_1,
-  wxwidgets_3_1,
+  wxwidgets_3_3,
   libx11,
   libnoise,
   withSystemd ? stdenv.hostPlatform.isLinux,
   withNvidiaGLWorkaround ? false,
 }:
 let
-  wxGTK' =
-    (wxwidgets_3_1.override {
-      withCurl = true;
-      withPrivateFonts = true;
-      withWebKit = true;
-      withEGL = false;
-    }).overrideAttrs
-      (old: {
-        buildInputs = old.buildInputs ++ [ libsecret ];
-        configureFlags = old.configureFlags ++ [
-          # Disable noisy debug dialogs
-          "--enable-debug=no"
-          "--enable-secretstore"
-        ];
-      });
+  wxGTK' = wxwidgets_3_3.overrideAttrs (old: {
+    configureFlags = old.configureFlags ++ [
+      # Disable noisy debug dialogs
+      "--enable-debug=no"
+      "--enable-secretstore"
+    ];
+  });
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "orca-slicer";
-  version = "2.3.2";
+  version = "2.4.0-beta";
 
   src = fetchFromGitHub {
     owner = "OrcaSlicer";
     repo = "OrcaSlicer";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-c1WTODLrXGtyJWkEueOz5jHhPbA/JFcMeAwhpvoKnKo=";
+    hash = "sha256-bx4faVtEkcqBXzSXBXIsntDA4EFxDxWyUeI583tYhdw=";
   };
 
   nativeBuildInputs = [
@@ -94,7 +86,7 @@ stdenv.mkDerivation (finalAttrs: {
     curl
     dbus
     draco
-    eigen
+    eigen_5
     expat
     ffmpeg
     gcc-unwrapped
@@ -130,14 +122,6 @@ stdenv.mkDerivation (finalAttrs: {
     ./patches/0001-not-for-upstream-CMakeLists-Link-against-webkit2gtk-.patch
     # Link opencv_core and opencv_imgproc instead of opencv_world
     ./patches/dont-link-opencv-world-orca.patch
-    # The changeset from https://github.com/OrcaSlicer/OrcaSlicer/pull/7650, can be removed when that PR gets merged
-    # Allows disabling the update nag screen
-    (fetchpatch {
-      name = "pr-7650-configurable-update-check.patch";
-      url = "https://github.com/OrcaSlicer/OrcaSlicer/commit/d10a06ae11089cd1f63705e87f558e9392f7a167.patch";
-      hash = "sha256-t4own5AwPsLYBsGA15id5IH1ngM0NSuWdFsrxMRXmTk=";
-    })
-
     # Pick https://github.com/prusa3d/PrusaSlicer/pull/14207 to remove unused and insecure ilmbase dependency
     ./patches/no-ilmbase.patch
   ];
