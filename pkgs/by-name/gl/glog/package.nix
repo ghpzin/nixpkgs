@@ -92,6 +92,7 @@ stdenv.mkDerivation (finalAttrs: {
     '';
 
   meta = {
+    broken = true; # test fail with gcc16 TODO: figure it out or yank it out of things as it is archived since 2025
     homepage = "https://github.com/google/glog";
     license = lib.licenses.bsd3;
     description = "Library for application-level logging";

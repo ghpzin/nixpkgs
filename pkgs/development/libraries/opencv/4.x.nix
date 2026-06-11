@@ -12,7 +12,6 @@
   hdf5,
   boost,
   glib,
-  glog,
   gflags,
   protobuf,
   config,
@@ -347,7 +346,6 @@ effectiveStdenv.mkDerivation {
     boost
     gflags
     glib
-    glog
     pcre2
     protobuf
     zlib

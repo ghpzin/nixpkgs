@@ -1,12 +1,12 @@
 {
   lib,
   stdenv,
-  fetchurl,
+  fetchFromGitHub,
   blas,
   cmake,
   eigen,
   gflags,
-  glog,
+  abseil-cpp,
   suitesparse,
   metis,
   runTests ? false,
@@ -16,11 +16,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "ceres-solver";
-  version = "2.1.0";
+  version = "2.2.0-unstable-2026-06-09";
 
-  src = fetchurl {
-    url = "http://ceres-solver.org/ceres-solver-${finalAttrs.version}.tar.gz";
-    sha256 = "sha256-99dO7N4K7XW/xR7EjJHQH+Fqa/FrzhmHpwcyhnAeL8Y=";
+  src = fetchFromGitHub {
+    owner = "ceres-solver";
+    repo = "ceres-solver";
+    rev = "8a566fcc156322160b96f8ca5f0ff755241c2d33";
+    hash = "sha256-mEl7gvlR4a4I3ncdVCoVEp+SyfyD3tFIQOpNnDPQQeg=";
   };
 
   outputs = [
@@ -32,7 +34,7 @@ stdenv.mkDerivation (finalAttrs: {
   buildInputs = lib.optional runTests gflags;
   propagatedBuildInputs = [
     eigen
-    glog
+    abseil-cpp
   ]
   ++ lib.optionals withBlas [
     blas
