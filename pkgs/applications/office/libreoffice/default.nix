@@ -398,6 +398,14 @@ stdenv.mkDerivation (finalAttrs: {
 
     # Don't detect Qt paths from qmake, so our patched-in onese are used
     ./dont-detect-qt-paths-from-qmake.patch
+
+    # Fix build with gcc16
+    # https://bugs.documentfoundation.org/show_bug.cgi?id=171385
+    (fetchpatch2 {
+      name = "libreoffice-add-missing-stdint.patch";
+      url = "https://github.com/LibreOffice/core/commit/d0265596672d78ad6f3980ff6fb900535aefd11f.patch?full_index=1";
+      hash = "sha256-EMJYl/KDfkJuggSdIdUvNPz3Wi8OjjK1rKKCeW51ZR0=";
+    })
   ]
   ++ lib.optionals (variant != "collabora" && variant != "collabora-coda") [
     # Revert part of https://github.com/LibreOffice/core/commit/6f60670877208612b5ea320b3677480ef6508abb that broke zlib linking

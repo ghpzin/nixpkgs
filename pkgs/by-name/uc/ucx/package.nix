@@ -83,17 +83,23 @@ stdenv.mkDerivation (finalAttrs: {
   ]
   ++ lib.optionals enableRocm rocmList;
 
-  # NOTE: With `__structuredAttrs` enabled, `LDFLAGS` must be set under `env` so it is assured to be a string;
-  # otherwise, we might have forgotten to convert it to a string and Nix would make LDFLAGS a shell variable
-  # referring to an array!
-  env.LDFLAGS = toString (
-    lib.optionals enableCuda [
-      # Fake libcuda.so (the real one is deployed impurely)
-      "-L${lib.getOutput "stubs" cudaPackages.cuda_cudart}/lib/stubs"
-      # Fake libnvidia-ml.so (the real one is deployed impurely)
-      "-L${lib.getOutput "stubs" cudaPackages.cuda_nvml_dev}/lib/stubs"
-    ]
-  );
+  env = {
+    # Fix build with gcc16
+    # https://github.com/openucx/ucx/issues/11061
+    NIX_CFLAGS_COMPILE = "-Wno-error=deprecated-openmp";
+
+    # NOTE: With `__structuredAttrs` enabled, `LDFLAGS` must be set under `env` so it is assured to be a string;
+    # otherwise, we might have forgotten to convert it to a string and Nix would make LDFLAGS a shell variable
+    # referring to an array!
+    LDFLAGS = toString (
+      lib.optionals enableCuda [
+        # Fake libcuda.so (the real one is deployed impurely)
+        "-L${lib.getOutput "stubs" cudaPackages.cuda_cudart}/lib/stubs"
+        # Fake libnvidia-ml.so (the real one is deployed impurely)
+        "-L${lib.getOutput "stubs" cudaPackages.cuda_nvml_dev}/lib/stubs"
+      ]
+    );
+  };
 
   configureFlags = [
     "--with-rdmacm=${lib.getDev rdma-core}"

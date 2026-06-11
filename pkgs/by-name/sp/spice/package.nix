@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchurl,
+  fetchpatch,
   meson,
   ninja,
   pkg-config,
@@ -38,6 +39,14 @@ stdenv.mkDerivation (finalAttrs: {
 
   patches = [
     ./remove-rt-on-darwin.patch
+    # Fix build with gcc16
+    # https://gitlab.freedesktop.org/spice/spice/-/work_items/96
+    # https://gitlab.freedesktop.org/spice/spice/-/merge_requests/244
+    (fetchpatch {
+      name = "spice-fix-build-with-gcc16.patch";
+      url = "https://gitlab.freedesktop.org/spice/spice/-/commit/a904cd86430aa555a50730e9389e210637a546c1.patch";
+      hash = "sha256-6GGqi+Y4I/oftE8zXuRnX021+r7SrQPUdAdBsCv9MIw=";
+    })
   ];
 
   nativeBuildInputs = [

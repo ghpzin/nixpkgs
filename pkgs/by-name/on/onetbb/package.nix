@@ -2,6 +2,7 @@ args@{
   lib,
   stdenv,
   fetchFromGitHub,
+  fetchpatch,
   cmake,
   hwloc, # Purposefully shadowed below
   ninja,
@@ -44,6 +45,11 @@ stdenv.mkDerivation (finalAttrs: {
     #
     # <https://github.com/uxlfoundation/oneTBB/pull/1849>
     ./fix-libtbbmalloc-dlopen.patch
+
+    # Fix build with gcc16, rebase from:
+    # https://github.com/uxlfoundation/oneTBB/pull/2091
+    # https://github.com/uxlfoundation/oneTBB/commit/bdbec2060633e28b6b0e2f89e39297cf89b63e8c
+    ./onetbb-fix-build-with-gcc16.patch
   ];
 
   nativeBuildInputs = [

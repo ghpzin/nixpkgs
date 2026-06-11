@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  fetchpatch,
   cmake,
   zlib,
   nix-update-script,
@@ -22,6 +23,16 @@ stdenv.mkDerivation (finalAttrs: {
     tag = "v${finalAttrs.version}";
     hash = "sha256-QWBi1pl5C76UtPhB6SmFipm9oEdnfhELMT3MqfV6oxg=";
   };
+
+  patches = [
+    # Fix build with gcc16
+    # https://github.com/assimp/assimp/pull/6669
+    ./assimp-fix-compiler-warnings.patch
+    # Fix build of pugixml with gcc16
+    # https://github.com/zeux/pugixml/issues/721
+    # https://github.com/zeux/pugixml/pull/725
+    ./assimp-pugixml-fix-uninitialized.patch
+  ];
 
   postPatch = ''
     # nix build sandbox does not set /var/tmp up:

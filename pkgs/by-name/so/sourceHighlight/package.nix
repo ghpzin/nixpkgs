@@ -68,6 +68,8 @@ stdenv.mkDerivation rec {
     }
   );
 
+  env.NIX_CFLAGS_COMPILE = "-std=gnu++17";
+
   configureFlags = [
     "--with-boost=${boost.out}"
     "--with-bash-completion=${placeholder "out"}/share/bash-completion/completions"

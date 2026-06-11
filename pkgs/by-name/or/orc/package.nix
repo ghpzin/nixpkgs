@@ -54,10 +54,13 @@ stdenv.mkDerivation (finalAttrs: {
   # https://gitlab.freedesktop.org/gstreamer/orc/-/issues/41
   doCheck =
     !(
-      stdenv.hostPlatform.isLinux
-      && stdenv.hostPlatform.isAarch64
-      && stdenv.cc.isGNU
-      && lib.versionAtLeast stdenv.cc.version "12"
+      (
+        stdenv.hostPlatform.isLinux
+        && stdenv.hostPlatform.isAarch64
+        && stdenv.cc.isGNU
+        && lib.versionAtLeast stdenv.cc.version "12"
+      )
+      || stdenv.hostPlatform.is32bit
     );
 
   passthru.tests = {

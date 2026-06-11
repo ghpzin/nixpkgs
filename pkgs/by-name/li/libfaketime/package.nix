@@ -28,6 +28,13 @@ stdenv.mkDerivation (finalAttrs: {
 
   patches = [
     ./nix-store-date.patch
+    # Fix build with gcc16
+    # https://github.com/wolfcw/libfaketime/pull/528
+    (fetchpatch {
+      name = "libfaketime-fix-unused-but-set-variable-warning-gcc16.patch";
+      url = "https://github.com/wolfcw/libfaketime/commit/712733e5f01e45372f3160cfdbcfd91520cb093d.patch";
+      hash = "sha256-Gu13gFhgvkncj8aowAnSRbHbUCctF5sakbX4uRwdy+A=";
+    })
   ]
   ++ lib.optionals stdenv.hostPlatform.isDarwin [
     (fetchpatch {

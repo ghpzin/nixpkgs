@@ -38,6 +38,7 @@ stdenv.mkDerivation (finalAttrs: {
   ];
   cmakeFlags = [
     (lib.cmakeBool "TOML11_BUILD_TOML_TESTS" finalAttrs.finalPackage.doCheck)
+    (lib.cmakeFeature "CMAKE_CXX_FLAGS" "-Wno-error=maybe-uninitialized")
   ];
   checkInputs = [
     doctest

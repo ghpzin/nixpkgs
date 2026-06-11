@@ -34,6 +34,13 @@ stdenv.mkDerivation (finalAttrs: {
       url = "https://github.com/sctplab/usrsctp/commit/7569d2ce1e8658534369ad9726ca62139211db84.patch";
       hash = "sha256-Hxp1SGwmpm6UK//KFLQoOmmI0a1QpSNaTaEEUbC8jbg=";
     })
+    # Fix build with gcc16
+    # https://github.com/sctplab/usrsctp/pull/729
+    (fetchpatch {
+      name = "usrsctp-fix-build-with-gcc16.patch";
+      url = "https://github.com/sctplab/usrsctp/commit/33d7af1a207783f42f5fc2d10ed27a8de7dc495b.patch";
+      hash = "sha256-24Jp7uBHy7PX/Hrrv179TdeegDFQggV0ZQqPSa/V4VU=";
+    })
   ];
 
   nativeBuildInputs = [ cmake ];

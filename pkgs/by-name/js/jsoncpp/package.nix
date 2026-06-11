@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  fetchpatch,
   cmake,
   python3,
   validatePkgConfig,
@@ -27,6 +28,17 @@ stdenv.mkDerivation (finalAttrs: {
     rev = finalAttrs.version;
     sha256 = "sha256-rf8d2UNTVEZhuiyChK2XnUbfGDvsfXnKADhaSp8qBwQ=";
   };
+
+  patches = [
+    # Fix build with gcc16
+    # https://github.com/open-source-parsers/jsoncpp/pull/1685
+    (fetchpatch {
+      name = "jsoncpp-fix-build-with-gcc16.patch";
+      url = "https://github.com/open-source-parsers/jsoncpp/commit/71d46ca38e90dc902e8178ba484af4f27fa11947.patch";
+      hash = "sha256-u+nySqU8XYwNiG2MUa2TXtriHWFH5lh4k+qJkSIHbk8=";
+      includes = [ "src/test_lib_json/main.cpp" ];
+    })
+  ];
 
   /*
     During darwin bootstrap, we have a cp that doesn't understand the

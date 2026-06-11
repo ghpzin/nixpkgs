@@ -50,7 +50,10 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   mesonFlags =
-    lib.lists.optional (!stdenv.hostPlatform.isAarch64) "-Dneon=disabled"
+    # Fix build with gcc16
+    # https://gitlab.freedesktop.org/pulseaudio/webrtc-audio-processing/-/work_items/44
+    [ "-Dcpp_std=c++20" ]
+    ++ lib.lists.optional (!stdenv.hostPlatform.isAarch64) "-Dneon=disabled"
     ++ lib.lists.optional (stdenv.hostPlatform.isi686) "-Dinline-sse=false";
 
   passthru.tests.pkg-config = testers.hasPkgConfigModules {

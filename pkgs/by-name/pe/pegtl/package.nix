@@ -1,6 +1,7 @@
 {
   cmake,
   fetchFromGitHub,
+  fetchpatch,
   gitUpdater,
   lib,
   ninja,
@@ -17,6 +18,13 @@ stdenv.mkDerivation (finalAttrs: {
     rev = finalAttrs.version;
     hash = "sha256-nPWSO2wPl/qenUQgvQDQu7Oy1dKa/PnNFSclmkaoM8A=";
   };
+
+  patches = [
+    # Fix build with gcc16
+    # https://github.com/taocpp/PEGTL/issues/382
+    # rebase of: https://github.com/taocpp/PEGTL/commit/0176e87da3a02d0ab40ce39f03e0e4108d1bbba5
+    ./pegtl-fix-build-with-gcc16.patch
+  ];
 
   nativeBuildInputs = [
     cmake

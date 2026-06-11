@@ -583,6 +583,12 @@ stdenv.mkDerivation rec {
       url = "https://git.savannah.gnu.org/cgit/grub.git/patch/?id=ac1512b872af8567b408518a7efa01607a0219ae";
       hash = "sha256-deyp6Yatlgv86bYMt7WcWhKg8J6StDPUEy4UPHqJYIc=";
     })
+    # Fix build with GCC 16
+    (fetchpatch {
+      name = "grub-move-GRUB_MACHINE_PCBIOS-ifdef.patch";
+      url = "https://git.savannah.gnu.org/cgit/grub.git/patch/?id=9922ed133c2c754ec9f37198da2b3e3e8a4fd5ff";
+      hash = "sha256-V2vffDxL/qQ14YN5scc3CFPBFBWvkh57dc5/hWd/6F4=";
+    })
   ];
 
   postPatch =

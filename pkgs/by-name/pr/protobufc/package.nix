@@ -20,6 +20,10 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-bpxk2o5rYLFkx532A3PYyhh2MwVH2Dqf3p/bnNpQV7s=";
   };
 
+  # Fix buidl with gcc16
+  # https://github.com/protobuf-c/protobuf-c/issues/776
+  env.NIX_CFLAGS_COMPILE = "-std=gnu++20";
+
   outputs = [
     "out"
     "dev"

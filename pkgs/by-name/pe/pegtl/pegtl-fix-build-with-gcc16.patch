@@ -1,0 +1,13 @@
+diff --git a/include/tao/pegtl/demangle.hpp b/include/tao/pegtl/demangle.hpp
+index 389d00c93a..338dc3942c 100644
+--- a/include/tao/pegtl/demangle.hpp
++++ b/include/tao/pegtl/demangle.hpp
+@@ -85,7 +85,7 @@
+    return tmp.substr( 0, end );
+ }
+ 
+-#elif( __GNUC__ == 9 ) && ( __GNUC_MINOR__ < 3 )
++#elif( ( __GNUC__ == 9 ) && ( __GNUC_MINOR__ < 3 ) ) || ( __GNUC__ == 16 )
+ 
+ #if !defined( __cpp_rtti )
+ #error "RTTI support required for GCC 9.1/9.2"

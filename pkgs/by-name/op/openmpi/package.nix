@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchurl,
+  fetchpatch,
   removeReferencesTo,
   gfortran,
   perl,
@@ -46,6 +47,22 @@ stdenv.mkDerivation (finalAttrs: {
     url = "https://www.open-mpi.org/software/ompi/v${lib.versions.majorMinor finalAttrs.version}/downloads/openmpi-${finalAttrs.version}.tar.bz2";
     sha256 = "sha256-Cs7MT8IY5d69vLikHRgsaw8dKTkwFe12OyqR1dc3TMY=";
   };
+
+  patches = [
+    # Fix build with gcc16
+    # https://github.com/open-mpi/ompi/pull/13756
+    (fetchpatch {
+      name = "openmpi-drop-opal_attribute_always_inline.patch";
+      url = "https://github.com/open-mpi/ompi/commit/aa024ac73d624611cfe3af6f541b5d28dedf07bb.patch";
+      hash = "sha256-VdR6fJdJDfD4Dni7fem9vxBVwMX5nEMOyqWR7nL6/r0=";
+    })
+    # https://github.com/open-mpi/ompi/pull/13758
+    (fetchpatch {
+      name = "openmpi-fix-brace-initialization.patch";
+      url = "https://github.com/open-mpi/ompi/commit/b014010f8786fbbacd3ada0bd7b88ae9aeeee127.patch";
+      hash = "sha256-M2n0k2wCGLQaLhEVRCeH4NnqFUNQdBpNiENj5qXS+z0=";
+    })
+  ];
 
   postPatch = ''
     patchShebangs ./

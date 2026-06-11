@@ -46,7 +46,9 @@ stdenv.mkDerivation (finalAttrs: {
     # Workaround clang17+ / lto bug
     # See https://github.com/esa/pagmo2/pull/585
     # Should be removed in new release
-    NIX_CFLAGS_COMPILE = lib.optionalString stdenv.cc.isClang "-fno-assume-unique-vtables";
+    NIX_CFLAGS_COMPILE = toString (
+      [ "-std=gnu++17" ] ++ lib.optionals stdenv.cc.isClang [ "-fno-assume-unique-vtables" ]
+    );
   };
 
   doCheck = true;

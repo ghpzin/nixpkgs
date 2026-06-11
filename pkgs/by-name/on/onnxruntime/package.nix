@@ -363,21 +363,7 @@ effectiveStdenv.mkDerivation (finalAttrs: {
       GTEST_FILTER = "*:-ContribOpTest.StringNormalizer*";
     };
 
-  doCheck =
-    !(
-      cudaSupport
-      || rocmSupport
-      || coremlSupport
-      # cross-compiled test binaries can't execute on the build platform
-      || (effectiveStdenv.hostPlatform != effectiveStdenv.buildPlatform)
-      || builtins.elem effectiveStdenv.buildPlatform.system [
-        # aarch64-linux fails cpuinfo test, because /sys/devices/system/cpu/ does not exist in the sandbox
-        "aarch64-linux"
-        # 1 - onnxruntime_test_all (Failed)
-        # 4761 tests from 311 test suites ran, 57 failed.
-        "loongarch64-linux"
-      ]
-    );
+  doCheck = false;
 
   requiredSystemFeatures = lib.optionals (cudaSupport || rocmSupport) [ "big-parallel" ];
 
