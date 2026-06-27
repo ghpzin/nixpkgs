@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  fetchpatch,
   python,
   pythonAtLeast,
   buildPythonPackage,
@@ -47,6 +48,33 @@ buildPythonPackage (finalAttrs: {
     fetchSubmodules = true;
     hash = "sha256-RiC1dLoDamK5B2VzHBL0V//K/Vix25q11wNGcl3Witk=";
   };
+
+  patches = lib.optional stdenv.hostPlatform.is32bit [
+    (fetchpatch {
+      url = "https://github.com/numpy/numpy/commit/c455b03891a5141c87cfd998786111e57cb49fee.patch";
+      revert = true;
+      hash = "sha256-FeohSXUOaBdlMrRrN2cZnRzdpDcudzjjZKOA1xv91pc=";
+    })
+  ];
+
+  # 64bit:
+  # Checking for size of "long" : 8
+  # Checking for size of "long double" : 16
+  # Checking for size of "size_t" : 8
+  # Checking for size of "Py_intptr_t" with dependency python-3.12: 8
+  # Checking for size of "complex long double" : 32
+  # Message: Long double format: INTEL_EXTENDED_16_BYTES_LE
+
+  # 32bit:
+  # Checking for size of "long" : 4
+  # Checking for size of "long double" : 12
+  # Checking for size of "size_t" : 4
+  # Checking for size of "Py_intptr_t" with dependency python-3.12: 4
+  # Checking for size of "complex long double" : 24
+  # Message: Long double format: INTEL_EXTENDED_12_BYTES_LE
+
+  # complex=<class 'numpy.complex128'>
+  # real=<class 'numpy.float64'>
 
   postPatch = ''
     # remove needless reference to full Python path stored in built wheel
