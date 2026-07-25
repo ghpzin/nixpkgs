@@ -20,7 +20,7 @@
   opencascade-occt,
   microsoft-gsl,
   pkg-config,
-  python3Packages,
+  python312Packages,
   stdenv,
   swig,
   xercesc,
@@ -34,6 +34,7 @@
   gsettings-desktop-schemas,
 }:
 let
+  python3Packages = python312Packages;
   pythonDeps = with python3Packages; [
     boost
     gitpython # for addon manager
