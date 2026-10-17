@@ -40,6 +40,11 @@ buildPythonPackage (finalAttrs: {
     pytestCheckHook
   ];
 
+  # disabledTests = [
+  #   "test_bin_path_prefix"
+  #   "test_bin_path"
+  # ];
+
   enabledTestPaths = [
     # don't run the demo tests
     "tests"
