@@ -25,6 +25,9 @@ stdenv.mkDerivation (finalAttrs: {
   preBuild = ''
     substituteInPlace src/Makefile --replace-fail "BASEDIR :=" "BASEDIR ?="
     substituteInPlace src/Makefile --replace-fail "modules_install" "INSTALL_MOD_PATH=$out modules_install"
+    substituteInPlace src/Makefile --replace-fail \
+      'DRIVERDIR := $(shell find $(BASEDIR)/kernel/drivers/net/ethernet -name realtek -type d)' \
+      'DRIVERDIR := $(BASEDIR)/kernel/drivers/net/ethernet/realtek'
   '';
 
   makeFlags = kernelModuleMakeFlags ++ [
@@ -32,11 +35,6 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   buildFlags = [ "modules" ];
-
-  installPhase = ''
-    mkdir -p $out/lib/modules/${kernel.modDirVersion}/kernel/drivers/net/ethernet/realtek
-    cp src/r8125.ko $out/lib/modules/${kernel.modDirVersion}/kernel/drivers/net/ethernet/realtek/
-  '';
 
   meta = {
     homepage = "https://salsa.debian.org/debian/r8125";

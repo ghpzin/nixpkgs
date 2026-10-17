@@ -152,6 +152,10 @@ stdenv.mkDerivation (finalAttrs: {
 
     substituteInPlace $out/share/applications/com.mitchellh.ghostty.desktop \
       --replace-fail "Exec=$out/bin/ghostty" "Exec=ghostty"
+
+    substituteInPlace $out/lib/systemd/user/app-com.mitchellh.ghostty.service \
+      --replace-fail "BusName=com.mitchellh.ghostty" \
+        "BusName=com.mitchellh.ghostty${"\n"}TimeoutStopSec=10"
   '';
 
   nativeInstallCheckInputs = [
